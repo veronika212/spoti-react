@@ -10,6 +10,8 @@ class LoginForm extends Component {
     const accessToken = params.access_token;
     const refreshToken = params.refresh_token;
     if (accessToken) {
+      window.localStorage.setItem('accessToken', accessToken);
+      window.localStorage.setItem('refreshToke', refreshToken);
       this.props.loginSuccess({
         accessToken,
         refreshToken,

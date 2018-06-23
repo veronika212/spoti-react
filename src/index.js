@@ -11,6 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { store } from './store/store';
 
 import LoginForm from './pages/login';
+import UserProfile from './pages/user-profile/UserProfile';
 
 export const history = createBrowserHistory();
 
@@ -20,6 +21,7 @@ ReactDOM.render(
       <App>
         <Switch>
           <Route exact={true} path="/login" component={LoginForm} />
+          <Route exact={true} path="/user-profile" component={UserProfile} />
         </Switch>
       </App>
     </Router>

@@ -6,10 +6,12 @@ import { reducer as formReducer } from 'redux-form';
 import rootSaga from './rootSaga';
 
 import authReducer from '../reducers/authReducer';
+import userProfileReducer from '../reducers/userProfileReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   forms: formReducer,
+  userProfile: userProfileReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
