@@ -12,9 +12,8 @@ export const getUserProfile = () => {
 
 function* doGetUserProfile(action) {
   const resp = yield call(api.user.getProfile);
+
   console.log(resp, 'resp');
-  console.log(store, 'store');
-  console.log(store.getState(), 'store state');
 }
 
 export default function* userProfileSaga() {
