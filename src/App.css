@@ -1,32 +1,296 @@
-.App {
-  text-align: center;
+/**
+ * Load font family
+ */
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700');
+
+/* http://meyerweb.com/eric/tools/css/reset/
+    v2.0 | 20110126
+    License: none (public domain)
+ */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1.48;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/**
+  * Typography
+  */
+body {
+  font-family: 'Droid Sans', sans-serif;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+* {
+  -webkit-font-smoothing: antialiased;
 }
 
-.App-title {
-  font-size: 1.5em;
+.sans {
+  font-family: 'Droid Sans', sans-serif;
 }
 
-.App-intro {
-  font-size: large;
+.serif {
+  font-family: 'Droid Serif', serif;
 }
 
-@keyframes App-logo-spin {
+.regular {
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+b {
+  font-weight: 700;
+}
+small {
+  font-size: 80%;
+}
+
+/**
+  * Disable selection on element.
+  */
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/**
+  * Fade-in animation for sidebar hero title.
+  */
+@keyframes verticalSlideInAnimation {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(15px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes verticalSlideInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes verticalSlideInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes verticalSlideInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes verticalSlideInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verticalSlideIn {
+  -webkit-animation: verticalSlideInAnimation 500ms; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: verticalSlideInAnimation 500ms; /* Firefox < 16 */
+  -ms-animation: verticalSlideInAnimation 500ms; /* Internet Explorer */
+  -o-animation: verticalSlideInAnimation 500ms; /* Opera < 12.1 */
+  animation: verticalSlideInAnimation 500ms;
+}
+
+@media screen and (max-width: 991px) {
+  .hideOnMobileAndTablet {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .hideOnDesktop {
+    display: none;
+  }
+}
+
+/* Firefox - Remove red border on required fields */
+:not(output):-moz-ui-invalid,
+:not(output):-moz-ui-invalid:-moz-focusring {
+  box-shadow: none;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #7f7f7f;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #7f7f7f;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #7f7f7f;
+}
+
+textarea,
+input[type='range'],
+input,
+input:matches([type='password']),
+input:matches([type='search']) {
+  padding: 0;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
