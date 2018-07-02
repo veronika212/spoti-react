@@ -5,11 +5,21 @@ import axios from 'axios';
  */
 
 let accessToken = window.localStorage.getItem('accessToken');
+let refreshToken = window.localStorage.getItem('refreshToken');
 if (!accessToken) {
   accessToken = '';
 }
 
 function forwardErrorResponse(err) {
+  if (accessToken === '') {
+    window.location.href = '/login';
+    return;
+  }
+
+  if (err.response.status === 401 && refreshToken.length < 0) {
+    console.log('refresh');
+  }
+
   const resp = {
     ...err.response.data,
     ok: false,
@@ -38,5 +48,10 @@ export default {
   // User
   user: {
     getProfile: () => client.get(`${baseUrl}/me`).catch(forwardErrorResponse),
+  },
+
+  // Songs
+  songs: {
+    getSongs: () => client.get(`${baseUrl}/me/tracks`).catch(forwardErrorResponse),
   },
 };

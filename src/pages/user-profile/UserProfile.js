@@ -10,7 +10,6 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log(styles, 'styles');
     return (
       <div className={styles.userProfile}>
         <p>User Profile</p>
