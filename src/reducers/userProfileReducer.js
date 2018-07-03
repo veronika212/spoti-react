@@ -1,14 +1,20 @@
 import { combineReducers } from 'redux';
 
 export const actionTypes = {
-  GET_PROFILE: 'GET_PROFILE',
-  GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS',
-  GET_PROFILE_FAIL: 'GET_PROFILE_FAIL',
+  GET_USER_PROFILE: 'GET_USER_PROFILE',
+  GET_USER_PROFILE_SUCCESS: 'GET_USER_PROFILE_SUCCESS',
+  GET_USER_PROFILE_FAIL: 'GET_USER_PROFILE_FAIL',
 };
 
-function result(state = null, action) {
+const defaultState = {
+  country: '',
+  email: '',
+  id: '',
+};
+
+function result(state = defaultState, action) {
   switch (action.type) {
-    case actionTypes.GET_PROFILE_SUCCESS:
+    case actionTypes.GET_USER_PROFILE_SUCCESS:
       return action.payload;
     default:
       return state;
@@ -17,11 +23,10 @@ function result(state = null, action) {
 
 function error(state = null, action) {
   switch (action.type) {
-    case actionTypes.GET_PROFILE_FAIL:
+    case actionTypes.GET_USER_PROFILE_FAIL:
       return action.payload;
-    case action.LOGIN:
-    case actionTypes.GET_PROFILE:
-    case actionTypes.GET_PROFILE_SUCCESS:
+    case actionTypes.GET_USER_PROFILE:
+    case actionTypes.GET_USER_PROFILE_SUCCESS:
       return null;
     default:
       return state;
@@ -30,10 +35,10 @@ function error(state = null, action) {
 
 function working(state = false, action) {
   switch (action.type) {
-    case actionTypes.GET_PROFILE:
+    case actionTypes.GET_USER_PROFILE:
       return true;
-    case actionTypes.GET_PROFILE_FAIL:
-    case actionTypes.GET_PROFILE_SUCCESS:
+    case actionTypes.GET_USER_PROFILE_FAIL:
+    case actionTypes.GET_USER_PROFILE_SUCCESS:
       return false;
     default:
       return state;
