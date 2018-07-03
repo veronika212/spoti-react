@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
-import { FontIcon } from 'react-md';
+import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
 
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
-
-// import styles from './Songs.css';
-import { getSongs } from '../../sagas/songsSaga';
+import styles from './Songs.css';
+import { getSongs, deleteSong } from '../../sagas/songsSaga';
 import { selectSongs } from '../../reducers/songsReducer';
 
 class Songs extends Component {
   componentDidMount() {
     this.props.getSongs();
   }
+
+  handleDeleteSong = id => {
+    this.props.deleteSong(id);
+  };
 
   renderArtist(song) {
     return song.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
@@ -43,7 +45,14 @@ class Songs extends Component {
               <TableColumn>{format(song.added_at, 'DD-MM-YYYY')}</TableColumn>
               <TableColumn>{format(song.track.duration_ms, 'm:ss')}</TableColumn>
               <TableColumn>
-                <FontIcon>delete</FontIcon>
+                <FontIcon
+                  className={styles.icons}
+                  onClick={() => {
+                    this.handleDeleteSong(song.track.id);
+                  }}
+                >
+                  delete
+                </FontIcon>
               </TableColumn>
             </TableRow>
           ))}
@@ -69,5 +78,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getSongs }
+  { getSongs, deleteSong }
 )(Songs);

@@ -4,6 +4,10 @@ export const actionTypes = {
   GET_SONGS: 'GET_SONGS',
   GET_SONGS_SUCCESS: 'GET_SONGS_SUCCESS',
   GET_SONGS_FAIL: 'GET_SONGS_FAIL',
+
+  DELETE_SONG: 'DELETE_SONG',
+  DELETE_SONG_SUCCESS: 'DELETE_SONG_SUCCESS',
+  DELETE_SONG_FAIL: 'DELETE_SONG_FAIL',
 };
 
 const defaultState = {
@@ -25,7 +29,6 @@ function error(state = null, action) {
   switch (action.type) {
     case actionTypes.GET_SONGS_FAIL:
       return action.payload;
-    case action.LOGIN:
     case actionTypes.GET_SONGS:
     case actionTypes.GET_SONGS_SUCCESS:
       return null;
