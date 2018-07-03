@@ -1,0 +1,7 @@
+import { combineReducers } from 'redux';
+
+export const actionTypes = {
+  GET_PLAYLIST_DETAIL: 'GET_PLAYLIST_DETAIL',
+  GET_PLAYLIST_DETAIL_SUCCESS: 'GET_PLAYLIST_DETAIL_SUCCESS',
+  GET_PLAYLIST_DETAIL_FAIL: 'GET_PLAYLIST_DETAIL_FAIL',
+};

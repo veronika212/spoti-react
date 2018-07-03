@@ -55,4 +55,12 @@ export default {
     getSongs: () => client.get(`${baseUrl}/me/tracks`).catch(forwardErrorResponse),
     delete: id => client.delete(`${baseUrl}/me/tracks/${id}`).catch(forwardErrorResponse),
   },
+
+  // Playlists
+  playlist: {
+    getPlaylist: (playlistId, userId) =>
+      client
+        .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`)
+        .catch(forwardErrorResponse),
+  },
 };

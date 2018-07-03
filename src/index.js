@@ -14,6 +14,7 @@ import { store } from './store/store';
 import LoginForm from './pages/login';
 import UserProfile from './pages/user-profile/UserProfile';
 import Songs from './pages/songs/Songs';
+import PlaylistDetail from './pages/playlist-detail/PlaylistDetail';
 
 export const history = createBrowserHistory();
 
@@ -31,6 +32,7 @@ ReactDOM.render(
           <Route exact={true} path="/login" component={LoginForm} />
           <Route exact={true} path="/user-profile" component={UserProfile} />
           <Route exact={true} path="/songs" component={Songs} />
+          <Route exact={true} path="/playlists/:id" component={PlaylistDetail} />
         </Switch>
       </App>
     </Router>
