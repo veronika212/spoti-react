@@ -9,7 +9,7 @@ export const actionTypes = {
 const defaultState = {
   country: '',
   email: '',
-  id: '',
+  id: 'wtide2gh74zuwfpa1pwswmxcu',
 };
 
 function result(state = defaultState, action) {
@@ -55,3 +55,4 @@ export default combineReducers({
  * Selectors
  */
 export const selectUserProfile = state => state.userProfile.result;
+export const selectUserId = state => selectUserProfile(state).id;

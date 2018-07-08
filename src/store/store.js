@@ -8,12 +8,14 @@ import rootSaga from './rootSaga';
 import authReducer from '../reducers/authReducer';
 import userProfileReducer from '../reducers/userProfileReducer';
 import songsReducer from '../reducers/songsReducer';
+import playlistDetailReducer from '../reducers/playlistDetailReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   forms: formReducer,
   userProfile: userProfileReducer,
   songs: songsReducer,
+  playlist: playlistDetailReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

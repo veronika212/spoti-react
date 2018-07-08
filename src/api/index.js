@@ -58,9 +58,13 @@ export default {
 
   // Playlists
   playlist: {
-    getPlaylist: (playlistId, userId) =>
+    get: (playlistId, userId) =>
       client
         .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`)
+        .catch(forwardErrorResponse),
+    getImage: (playlistId, userId) =>
+      client
+        .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/images`)
         .catch(forwardErrorResponse),
   },
 };

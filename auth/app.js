@@ -14,8 +14,11 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
 var user_id = '';
-var client_id = 'e2357825e5db43cc8b76fcb6e8679ab8'; // Your client id
-var client_secret = 'dee667d418a34352a2f028b0c6df0da1'; // Your secret
+// var client_id = 'e2357825e5db43cc8b76fcb6e8679ab8'; // Your client id
+var client_id = '1b34d8d04b0b4ba8bc7306223ae27c1f';
+
+// var client_secret = 'dee667d418a34352a2f028b0c6df0da1'; // Your secret
+var client_secret = '145fd4e416a74ea19d95c274131f2c50'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
