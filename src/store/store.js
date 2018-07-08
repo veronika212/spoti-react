@@ -2,6 +2,8 @@ import { applyMiddleware, createStore, combineReducers } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { reducer as formReducer } from 'redux-form';
+import { persistStore, persistReducer } from 'redux-persist';
+import sessionStorage from 'redux-persist/es/storage/session';
 
 import rootSaga from './rootSaga';
 
@@ -18,7 +20,16 @@ const rootReducer = combineReducers({
   playlist: playlistDetailReducer,
 });
 
-const sagaMiddleware = createSagaMiddleware();
-export const store = createStore(rootReducer, {}, applyMiddleware(sagaMiddleware, logger));
+const persistedReducer = persistReducer(
+  {
+    key: 'root',
+    storage: sessionStorage,
+    whitelist: ['auth', 'userProfile', 'songs'],
+  },
+  rootReducer
+);
 
+const sagaMiddleware = createSagaMiddleware();
+export const store = createStore(persistedReducer, {}, applyMiddleware(sagaMiddleware, logger));
+export const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);

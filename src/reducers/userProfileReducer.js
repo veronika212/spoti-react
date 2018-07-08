@@ -9,7 +9,7 @@ export const actionTypes = {
 const defaultState = {
   country: '',
   email: '',
-  id: 'wtide2gh74zuwfpa1pwswmxcu',
+  id: '',
 };
 
 function result(state = defaultState, action) {
