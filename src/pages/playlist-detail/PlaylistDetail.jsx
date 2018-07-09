@@ -5,7 +5,11 @@ import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } fr
 
 import styles from '../playlist-detail/PlaylistDetail.css';
 import '../../App.css';
-import { getPlaylistDetail, getPlaylistCoverImage } from '../../sagas/playlistDetailSaga';
+import {
+  getPlaylistDetail,
+  getPlaylistCoverImage,
+  deletePlaylistTrack,
+} from '../../sagas/playlistDetailSaga';
 import { selectPlaylistDetail } from '../../reducers/playlistDetailReducer';
 
 class PlaylistDetail extends Component {
@@ -14,6 +18,11 @@ class PlaylistDetail extends Component {
     this.props.getPlaylistDetail(id);
     this.props.getPlaylistCoverImage(id);
   }
+
+  handleDeleteTrack = trackId => {
+    const { id } = this.props.match.params;
+    this.props.deletePlaylistTrack(trackId, id);
+  };
 
   renderArtist(playlistDetail) {
     return playlistDetail.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
@@ -47,7 +56,7 @@ class PlaylistDetail extends Component {
                 <FontIcon
                   className={styles.icons}
                   onClick={() => {
-                    this.handleDeleteSong(playlistDetail.track.id);
+                    this.handleDeleteTrack(playlistDetail.track.id);
                   }}
                 >
                   delete
@@ -77,5 +86,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getPlaylistDetail, getPlaylistCoverImage }
+  { getPlaylistDetail, getPlaylistCoverImage, deletePlaylistTrack }
 )(PlaylistDetail);

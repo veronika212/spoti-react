@@ -66,5 +66,10 @@ export default {
       client
         .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/images`)
         .catch(forwardErrorResponse),
+    // delete: (playlistId, userId) =>
+    //   client.delete(`${baseUrl}/users/${userId}/playlist/${playlistId}/tracks`),
+
+    deleteTrack: (playlistId, userId, tracks) =>
+      client.delete(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`, tracks),
   },
 };
