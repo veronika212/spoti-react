@@ -78,3 +78,6 @@ export default combineReducers({
  * Selectors
  */
 export const selectPlaylistDetail = state => state.playlist.result.items;
+export const selectPlaylistCoverImages = state => state.playlist.result.images;
+export const selectPlaylistUserName = state => state.userProfile.result;
+export const selectPlaylistTotalSongs = state => state.playlist.result;

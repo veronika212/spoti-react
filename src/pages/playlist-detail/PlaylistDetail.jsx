@@ -10,7 +10,12 @@ import {
   getPlaylistCoverImage,
   deletePlaylistTrack,
 } from '../../sagas/playlistDetailSaga';
-import { selectPlaylistDetail } from '../../reducers/playlistDetailReducer';
+import {
+  selectPlaylistDetail,
+  selectPlaylistCoverImages,
+  selectPlaylistUserName,
+  selectPlaylistTotalSongs,
+} from '../../reducers/playlistDetailReducer';
 
 class PlaylistDetail extends Component {
   componentDidMount() {
@@ -28,10 +33,23 @@ class PlaylistDetail extends Component {
     return playlistDetail.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
   }
 
+  renderCoverImage() {
+    const { userName, images, totalSongs } = this.props;
+
+    return images.length > 0 ? (
+      <div>
+        <img className={styles.playlist_image} src={images[1].url} alt="playlistCoverImage/60/60" />
+        <p className={styles.playlist_created}>{`Created by ${userName.display_name}, ${
+          totalSongs.total
+        } songs`}</p>
+      </div>
+    ) : null;
+  }
+
   renderPlaylist() {
-    const { playlist } = this.props;
+    const { playlistDetail } = this.props;
     return (
-      <DataTable plain>
+      <DataTable plain className={styles.playlist_table}>
         <TableHeader>
           <TableRow>
             <TableColumn>Title</TableColumn>
@@ -43,7 +61,7 @@ class PlaylistDetail extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {playlist.map(playlistDetail => (
+          {playlistDetail.map(playlistDetail => (
             <TableRow key={playlistDetail.track.id}>
               <TableColumn>{playlistDetail.track.name}</TableColumn>
               <TableColumn>
@@ -72,6 +90,7 @@ class PlaylistDetail extends Component {
   render() {
     return (
       <div>
+        {this.renderCoverImage()}
         <ul>{this.renderPlaylist()}</ul>
       </div>
     );
@@ -80,7 +99,10 @@ class PlaylistDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    playlist: selectPlaylistDetail(state),
+    playlistDetail: selectPlaylistDetail(state),
+    images: selectPlaylistCoverImages(state),
+    userName: selectPlaylistUserName(state),
+    totalSongs: selectPlaylistTotalSongs(state),
   };
 };
 
