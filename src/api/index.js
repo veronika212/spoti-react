@@ -56,7 +56,7 @@ export default {
     delete: id => client.delete(`${baseUrl}/me/tracks/${id}`).catch(forwardErrorResponse),
   },
 
-  // Playlists
+  // PlaylistDetail
   playlist: {
     get: (playlistId, userId) =>
       client
@@ -71,5 +71,10 @@ export default {
 
     deleteTrack: (playlistId, userId, tracks) =>
       client.delete(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`, tracks),
+  },
+
+  // Playlists
+  playlistsList: {
+    getPlaylists: () => client.get(`${baseUrl}/me/playlists`).catch(forwardErrorResponse),
   },
 };

@@ -24,6 +24,15 @@ class PlaylistDetail extends Component {
     this.props.getPlaylistCoverImage(id);
   }
 
+  componentDidUpdate(prevProps) {
+    const { id } = this.props.match.params;
+
+    if (id !== prevProps.match.params.id) {
+      this.props.getPlaylistDetail(id);
+      this.props.getPlaylistCoverImage(id);
+    }
+  }
+
   handleDeleteTrack = trackId => {
     const { id } = this.props.match.params;
     this.props.deletePlaylistTrack(trackId, id);

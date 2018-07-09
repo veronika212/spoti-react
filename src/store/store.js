@@ -11,6 +11,7 @@ import authReducer from '../reducers/authReducer';
 import userProfileReducer from '../reducers/userProfileReducer';
 import songsReducer from '../reducers/songsReducer';
 import playlistDetailReducer from '../reducers/playlistDetailReducer';
+import playlistsListReducer from '../reducers/playlistsListReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   userProfile: userProfileReducer,
   songs: songsReducer,
   playlist: playlistDetailReducer,
+  userPlaylists: playlistsListReducer,
 });
 
 const persistedReducer = persistReducer(
