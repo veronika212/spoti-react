@@ -55,4 +55,21 @@ export default {
     getSongs: () => client.get(`${baseUrl}/me/tracks`).catch(forwardErrorResponse),
     delete: id => client.delete(`${baseUrl}/me/tracks/${id}`).catch(forwardErrorResponse),
   },
+
+  // Playlists
+  playlist: {
+    get: (playlistId, userId) =>
+      client
+        .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`)
+        .catch(forwardErrorResponse),
+    getImage: (playlistId, userId) =>
+      client
+        .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/images`)
+        .catch(forwardErrorResponse),
+    // delete: (playlistId, userId) =>
+    //   client.delete(`${baseUrl}/users/${userId}/playlist/${playlistId}/tracks`),
+
+    deleteTrack: (playlistId, userId, tracks) =>
+      client.delete(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`, tracks),
+  },
 };

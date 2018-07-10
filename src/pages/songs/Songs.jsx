@@ -4,6 +4,7 @@ import format from 'date-fns/format';
 import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
 
 import styles from './Songs.css';
+import '../../App.css';
 import { getSongs, deleteSong } from '../../sagas/songsSaga';
 import { selectSongs } from '../../reducers/songsReducer';
 
