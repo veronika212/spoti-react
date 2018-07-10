@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   forms: formReducer,
   userProfile: userProfileReducer,
   songs: songsReducer,
-  playlist: playlistDetailReducer,
+  playlistDetail: playlistDetailReducer,
   userPlaylists: playlistsListReducer,
 });
 
