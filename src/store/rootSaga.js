@@ -5,6 +5,7 @@ import userProfileSaga from '../sagas/userProfileSaga';
 import songsSaga from '../sagas/songsSaga';
 import playlistDetailSaga from '../sagas/playlistDetailSaga';
 import playlistsListSaga from '../sagas/playlistsListSaga';
+import artistsSaga from '../sagas/artistsSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     songsSaga(),
     playlistDetailSaga(),
     playlistsListSaga(),
+    artistsSaga(),
   ]);
 }

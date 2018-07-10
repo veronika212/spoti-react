@@ -77,4 +77,9 @@ export default {
   playlistsList: {
     getPlaylists: () => client.get(`${baseUrl}/me/playlists`).catch(forwardErrorResponse),
   },
+
+  // Artists
+  artists: {
+    get: ids => client.get(`${baseUrl}/artists?ids=${ids}`).catch(forwardErrorResponse),
+  },
 };

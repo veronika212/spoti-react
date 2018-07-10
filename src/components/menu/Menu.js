@@ -26,6 +26,13 @@ class Menu extends Component {
         label: 'Songs',
         onClick: () => history.push('/songs'),
       },
+      {
+        label: 'Artists',
+        onClick: () => history.push('/artists'),
+      },
+      {
+        label: 'Playlists:',
+      },
     ];
     userPlaylists.result.items.forEach(item => {
       navItems.push({
