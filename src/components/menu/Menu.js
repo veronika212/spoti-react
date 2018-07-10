@@ -6,16 +6,7 @@ import { List, ListItem, Subheader } from 'react-md';
 import { history } from '../../index';
 import { getPlaylistsList } from '../../sagas/playlistsListSaga';
 import styles from './Menu.css';
-// import { connect } from 'net';
 import { connect } from 'react-redux';
-
-// const navItems = [
-//   <List key="primaryText">
-//     <ListItem primaryText="Songs" onClick={() => history.push('/songs')} />
-//     <ListItem primaryText={this.renderUserPlaylists()} />
-//     <Subheader primaryText="Playlists" />
-//   </List>,
-// ];
 
 const isLeft = true;
 class Menu extends Component {
