@@ -1,14 +1,16 @@
 .icons {
   cursor: pointer; }
 
-.playlist_table {
-  clear: both; }
+.playlisInfoWrapper {
+  display: flex;
+  margin: 2rem; }
 
-.playlist_image {
-  margin: 2rem;
-  border: white;
-  float: left; }
+.playlistImage {
+  margin: 0 2rem;
+  width: 25%;
+  height: 20rem; }
 
-.playlist_created {
-  margin-top: 2rem;
-  float: left; }
+.playlistText {
+  width: 25%;
+  height: 20rem;
+  overflow: auto; }

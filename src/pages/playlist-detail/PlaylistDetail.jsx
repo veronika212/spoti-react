@@ -46,9 +46,9 @@ class PlaylistDetail extends Component {
     const { userName, images, totalSongs } = this.props;
 
     return images.length > 0 ? (
-      <div>
-        <img className={styles.playlist_image} src={images[1].url} alt="playlistCoverImage/60/60" />
-        <p className={styles.playlist_created}>{`Created by ${userName.display_name}, ${
+      <div className={styles.playlisInfoWrapper}>
+        <img className={styles.playlistImage} src={images[1].url} alt="playlistCoverImage/60/60" />
+        <p className={styles.playlistText}>{`Created by ${userName.display_name}, ${
           totalSongs.total
         } songs`}</p>
       </div>
@@ -58,7 +58,7 @@ class PlaylistDetail extends Component {
   renderPlaylist() {
     const { playlistDetail } = this.props;
     return (
-      <DataTable plain className={styles.playlist_table}>
+      <DataTable plain>
         <TableHeader>
           <TableRow>
             <TableColumn>Title</TableColumn>

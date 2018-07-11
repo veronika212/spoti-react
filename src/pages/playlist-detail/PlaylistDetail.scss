@@ -3,17 +3,18 @@
   cursor: pointer;
 }
 
-.playlist_table {
-  clear: both;
-}
-
-.playlist_image {
+.playlisInfoWrapper {
+  display: flex;
   margin: 2rem;
-  border: white;
-  float: left;
 }
 
-.playlist_created {
-  margin-top: 2rem;
-  float: left;
+.playlistImage {
+  margin: 0 2rem;
+  width: 25%;
+  height: 20rem;
+}
+.playlistText {
+  width: 25%;
+  height: 20rem;
+  overflow: auto;
 }
