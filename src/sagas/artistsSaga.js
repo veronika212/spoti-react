@@ -15,7 +15,9 @@ export const getArtists = () => {
 function* doGetArtistsSaga(action) {
   const songs = yield select(selectSongs);
   const artists = songs.map(song => song.track.artists[0].id);
-  const stringifyArtistsIds = artists.join(',');
+  const filteredArtist = artists.filter((value, index, self) => self.indexOf(value) === index);
+
+  const stringifyArtistsIds = filteredArtist.join(',');
   const resp = yield call(api.artists.get, stringifyArtistsIds);
 
   if (resp.ok === false) {

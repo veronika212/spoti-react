@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Drawer, Toolbar } from 'react-md';
-import { List, ListItem, Subheader } from 'react-md';
+import { List, ListItem } from 'react-md';
 
 import { history } from '../../index';
 import { getPlaylistsList } from '../../sagas/playlistsListSaga';
