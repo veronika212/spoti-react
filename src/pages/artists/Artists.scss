@@ -1,3 +1,5 @@
+@import '../../css/Colors.scss';
+
 .imageArtistsList {
   margin: 4rem;
   display: flex;
@@ -21,4 +23,16 @@
   border-radius: 50%;
   width: 160px;
   height: 160px;
+  margin-bottom: 1rem;
+}
+
+.artistsText {
+  font-weight: 600;
+}
+.artistsName {
+  font-style: italic;
+  color: $color-dark-gray;
+}
+.artistsPopularity {
+  color: $color-light-gray;
 }

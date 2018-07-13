@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
 
 import { getArtists } from '../../sagas/artistsSaga';
 import { selectArtists } from '../../reducers/artistsReducer';
+
 import styles from './Artists.css';
+
+let cx = classNames.bind(styles);
 
 class Artists extends Component {
   componentDidMount() {
@@ -17,8 +21,10 @@ class Artists extends Component {
       return (
         <li key={artist.id} className={styles.artistListItem}>
           <img className={styles.imageArtists} src={artist.images[2].url} alt="artistAvatar" />
-          <span>{artist.name}</span>
-          <span>{`popularity: ${artist.popularity}`}</span>
+          <span className={cx(styles.artistsText, styles.artistsName)}>{artist.name}</span>
+          <span className={cx(styles.artistsText, styles.artistsPopularity)}>{`popularity: ${
+            artist.popularity
+          }`}</span>
         </li>
       );
     });

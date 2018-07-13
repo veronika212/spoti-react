@@ -17,4 +17,15 @@
 .imageArtists {
   border-radius: 50%;
   width: 160px;
-  height: 160px; }
+  height: 160px;
+  margin-bottom: 1rem; }
+
+.artistsText {
+  font-weight: 600; }
+
+.artistsName {
+  font-style: italic;
+  color: #4b4f56; }
+
+.artistsPopularity {
+  color: #90949c; }
