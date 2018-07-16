@@ -1,0 +1,33 @@
+@import '../../css/Colors.scss';
+
+.artistDetailHeader {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem;
+}
+
+.image {
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+
+.info {
+  align-self: center;
+}
+
+.name {
+  font-size: 6rem;
+  font-weight: 600;
+  color: $color-dark-gray;
+  text-shadow: $shadow-dark-gray;
+}
+
+.text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $color-light-gray;
+}
+
+.tableImage {
+  padding-top: 0.2rem;
+}

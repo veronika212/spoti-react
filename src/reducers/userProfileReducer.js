@@ -56,3 +56,4 @@ export default combineReducers({
  */
 export const selectUserProfile = state => state.userProfile.result;
 export const selectUserId = state => selectUserProfile(state).id;
+export const selectUserCountry = state => selectUserProfile(state).country;
