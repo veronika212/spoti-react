@@ -1,0 +1,61 @@
+.artistDetailHeader {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem; }
+
+.image {
+  border-radius: 50%;
+  margin-right: 2rem;
+  box-shadow: 5px 0px 4px #969696; }
+
+.info {
+  align-self: center; }
+
+.name {
+  font-size: 6rem;
+  font-weight: 600;
+  color: #4b4f56;
+  text-shadow: 5px 0px 4px #969696; }
+
+.text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #90949c; }
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem; }
+  .title_albums {
+    margin: 2rem 1rem 0; }
+
+.tableImage {
+  padding-top: 0.2rem; }
+
+.icons {
+  cursor: pointer; }
+
+.albums {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 1rem;
+  justify-content: space-between;
+  align-content: flex-start; }
+
+.albumText {
+  color: #90949c;
+  margin: 1rem 0 0 1rem; }
+
+.albumItem {
+  width: 24%;
+  margin-top: 2rem; }
+
+.albumItemText {
+  color: #4b4f56; }
+  .albumItemText_title {
+    font-weight: 600; }
+
+.albumItemImage {
+  width: 100%;
+  margin-bottom: 0.5rem; }

@@ -77,4 +77,19 @@ export default {
   playlistsList: {
     getPlaylists: () => client.get(`${baseUrl}/me/playlists`).catch(forwardErrorResponse),
   },
+
+  // Artists
+  artists: {
+    get: ids => client.get(`${baseUrl}/artists?ids=${ids}`).catch(forwardErrorResponse),
+  },
+
+  //ArtistDetail
+  artistDetail: {
+    get: (artistId, country) =>
+      client
+        .get(`${baseUrl}/artists/${artistId}/top-tracks?country=${country}`)
+        .catch(forwardErrorResponse),
+    getImage: id => client.get(`${baseUrl}/artists/${id}`),
+    getAlbums: id => client.get(`${baseUrl}/artists/${id}/albums`).catch(forwardErrorResponse),
+  },
 };
