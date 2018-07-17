@@ -37,7 +37,7 @@ ReactDOM.render(
             <Route exact={true} path="/user-profile" component={UserProfile} />
             <Route exact={true} path="/songs" component={Songs} />
             <Route exact={true} path="/playlists/:id" component={PlaylistDetail} />
-            <Route exact={true} path="/artists/:id/top-tracks" component={ArtistDetail} />
+            <Route exact={true} path="/artists/:id" component={ArtistDetail} />
             <Route exact={true} path="/artists" component={Artists} />
           </Switch>
         </App>

@@ -21,7 +21,7 @@ class Artists extends Component {
     return artists.map(artist => {
       return (
         <li key={artist.id} className={styles.artistListItem}>
-          <Link to="/artists/:id/top-tracks">
+          <Link to={`/artists/${artist.id}`}>
             <img className={styles.imageArtists} src={artist.images[2].url} alt="artistAvatar" />
           </Link>
           <span className={cx(styles.artistsText, styles.artistsName)}>{artist.name}</span>
