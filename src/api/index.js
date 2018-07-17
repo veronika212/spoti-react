@@ -90,5 +90,6 @@ export default {
         .get(`${baseUrl}/artists/${artistId}/top-tracks?country=${country}`)
         .catch(forwardErrorResponse),
     getImage: id => client.get(`${baseUrl}/artists/${id}`),
+    getAlbums: id => client.get(`${baseUrl}/artists/${id}/albums`).catch(forwardErrorResponse),
   },
 };

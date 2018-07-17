@@ -22,10 +22,15 @@ export const getArtistDetailImage = id => {
   };
 };
 
+export const getArtistDetailAlbums = id => {
+  return {
+    type: artistDetailActionTypes.GET_ARTIST_DETAIL_ALBUMS,
+    payload: id,
+  };
+};
+
 // Sagas
 function* doGetArtistDetailSaga(action) {
-  // const artistDetailTracks = yield select(selectArtistDetail);
-  // const country = 'SK'; // slectni stav zo state.userprofile.result.country
   const country = yield select(selectUserCountry);
   const artistId = action.payload;
 
@@ -37,7 +42,6 @@ function* doGetArtistDetailSaga(action) {
       payload: resp.error.message,
     });
   }
-
   yield put({
     type: artistDetailActionTypes.GET_ARTIST_DETAIL_SUCCESS,
     payload: resp.data,
@@ -47,7 +51,7 @@ function* doGetArtistDetailSaga(action) {
 function* doGetArtistDetailImageSaga(action) {
   const artistId = action.payload;
   const resp = yield call(api.artistDetail.getImage, artistId);
-  console.log(resp);
+  // console.log(resp);
   if (resp.ok === false) {
     return yield put({
       type: artistDetailActionTypes.GET_ARTIST_DETAIL_IMAGE_FAIL,
@@ -60,7 +64,24 @@ function* doGetArtistDetailImageSaga(action) {
   });
 }
 
+function* doGetArtistDetailAlbumsSaga(action) {
+  const artistId = action.payload;
+  const resp = yield call(api.artistDetail.getAlbums, artistId);
+  console.log(resp);
+  if (resp.ok === false) {
+    return yield put({
+      type: artistDetailActionTypes.GET_ARTIST_DETAIL_ALBUMS_FAIL,
+      payload: resp.error.message,
+    });
+  }
+  yield put({
+    type: artistDetailActionTypes.GET_ARTIST_DETAIL_ALBUMS_SUCCESS,
+    payload: resp.data,
+  });
+}
+
 export default function* artistDetailSaga() {
   yield takeLatest(artistDetailActionTypes.GET_ARTIST_DETAIL, doGetArtistDetailSaga);
   yield takeLatest(artistDetailActionTypes.GET_ARTIST_DETAIL_IMAGE, doGetArtistDetailImageSaga);
+  yield takeLatest(artistDetailActionTypes.GET_ARTIST_DETAIL_ALBUMS, doGetArtistDetailAlbumsSaga);
 }

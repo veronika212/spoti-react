@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
-import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
+import { Link } from 'react-router-dom';
+import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
 import classNames from 'classnames/bind';
 
-import { getArtistDetail, getArtistDetailImage } from '../../sagas/artistDetailSaga';
-import { selectArtistDetailTracks, selectArtistDetail } from '../../reducers/artistDetailReducer';
+import {
+  getArtistDetail,
+  getArtistDetailImage,
+  getArtistDetailAlbums,
+} from '../../sagas/artistDetailSaga';
+import {
+  selectArtistDetailTracks,
+  selectArtistDetail,
+  selectArtistDetailAlbums,
+  selectArtistDetailAlbumsItems,
+} from '../../reducers/artistDetailReducer';
 
 import styles from '../artistDetail/ArtistDetail.css';
 
@@ -14,8 +24,10 @@ let cx = classNames.bind(styles);
 class ArtistDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
+    // console.log(this.props, 'props');
     this.props.getArtistDetail(id);
     this.props.getArtistDetailImage(id);
+    this.props.getArtistDetailAlbums(id);
   }
 
   componentDidUpdate(prevProps) {
@@ -24,12 +36,9 @@ class ArtistDetail extends Component {
     if (id !== prevProps.match.params.id) {
       this.props.getArtistDetail(id);
       this.props.getArtistDetailImage(id);
+      this.props.getArtistDetailAlbums(id);
     }
   }
-  // handleDeleteTrack = trackId => {
-  //   const { id } = this.props.match.params;
-  //   this.props.deletePlaylistTrack(trackId, id);
-  // };
 
   renderArtistHeader() {
     const { artistDetail } = this.props;
@@ -53,11 +62,10 @@ class ArtistDetail extends Component {
         <TableHeader>
           <TableRow>
             <TableColumn>Image</TableColumn>
-            <TableColumn>Name</TableColumn>
+            <TableColumn>Title</TableColumn>
             <TableColumn>Album</TableColumn>
             <TableColumn>Popularity</TableColumn>
             <TableColumn>Time</TableColumn>
-            <TableColumn>Delete</TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -74,15 +82,6 @@ class ArtistDetail extends Component {
               <TableColumn>{track.album.name}</TableColumn>
               <TableColumn>{track.popularity}</TableColumn>
               <TableColumn>{format(track.duration_ms, 'm:ss')}</TableColumn>
-              <TableColumn>
-                <FontIcon
-                // onClick={() => {
-                //   this.handleDeleteTrack(artistDetail.id);
-                // }}
-                >
-                  delete
-                </FontIcon>
-              </TableColumn>
             </TableRow>
           ))}
         </TableBody>
@@ -90,11 +89,37 @@ class ArtistDetail extends Component {
     );
   }
 
+  renderArtistAlbums() {
+    const { albumsItems } = this.props;
+    return albumsItems.map(item => {
+      return (
+        <li key={item.id} className={styles.albumItem}>
+          <Link to={`/albums/${item.id}`}>
+            <img
+              className={styles.albumItemImage}
+              src={item.images[1].url}
+              alt="albumImage/300/300"
+            />
+          </Link>
+          <div>
+            <p className={styles.albumItemText}>{format(item.release_date, 'DD.MM.YYYY')}</p>
+            <p className={cx(styles.albumItemText, styles.albumItemText_title)}>{item.name}</p>
+          </div>
+        </li>
+      );
+    });
+  }
+
   render() {
+    const { albums } = this.props;
     return (
       <div>
         {this.renderArtistHeader()}
+        <h1 className={styles.title}>Top tracks</h1>
         {this.renderTopTracks()}
+        <h1 className={cx(styles.title, styles.title_albums)}>Albums</h1>
+        <p className={styles.albumText}>{`all albums: ${albums.total}`}</p>
+        <ul className={styles.albums}>{this.renderArtistAlbums()}</ul>
       </div>
     );
   }
@@ -102,12 +127,14 @@ class ArtistDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    artistDetailTracks: selectArtistDetailTracks(state),
     artistDetail: selectArtistDetail(state),
+    artistDetailTracks: selectArtistDetailTracks(state),
+    albums: selectArtistDetailAlbums(state),
+    albumsItems: selectArtistDetailAlbumsItems(state),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getArtistDetail, getArtistDetailImage }
+  { getArtistDetail, getArtistDetailImage, getArtistDetailAlbums }
 )(ArtistDetail);
