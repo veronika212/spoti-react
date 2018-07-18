@@ -85,11 +85,11 @@ export default {
 
   //ArtistDetail
   artistDetail: {
-    get: (artistId, country) =>
+    getTracks: (artistId, country) =>
       client
         .get(`${baseUrl}/artists/${artistId}/top-tracks?country=${country}`)
         .catch(forwardErrorResponse),
-    getImage: id => client.get(`${baseUrl}/artists/${id}`),
+    getArtist: id => client.get(`${baseUrl}/artists/${id}`),
     getAlbums: id => client.get(`${baseUrl}/artists/${id}/albums`).catch(forwardErrorResponse),
   },
 };

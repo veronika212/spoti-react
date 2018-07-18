@@ -6,8 +6,8 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-
 import classNames from 'classnames/bind';
 
 import {
+  getArtistDetailTracks,
   getArtistDetail,
-  getArtistDetailImage,
   getArtistDetailAlbums,
 } from '../../sagas/artistDetailSaga';
 import {
@@ -24,19 +24,19 @@ let cx = classNames.bind(styles);
 class ArtistDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
-    // console.log(this.props, 'props');
+    this.props.getArtistDetailTracks(id);
     this.props.getArtistDetail(id);
-    this.props.getArtistDetailImage(id);
     this.props.getArtistDetailAlbums(id);
   }
 
   componentDidUpdate(prevProps) {
-    const { id } = this.props.match.params;
-
-    if (id !== prevProps.match.params.id) {
-      this.props.getArtistDetail(id);
-      this.props.getArtistDetailImage(id);
-      this.props.getArtistDetailAlbums(id);
+    const { getArtistDetailTracks, getArtistDetail, getArtistDetailAlbums, match } = this.props;
+    const { id } = match.params;
+    const prevId = prevProps.match.params.id;
+    if (id !== prevId) {
+      getArtistDetailTracks(id);
+      getArtistDetail(id);
+      getArtistDetailAlbums(id);
     }
   }
 
@@ -136,5 +136,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getArtistDetail, getArtistDetailImage, getArtistDetailAlbums }
+  { getArtistDetailTracks, getArtistDetail, getArtistDetailAlbums }
 )(ArtistDetail);

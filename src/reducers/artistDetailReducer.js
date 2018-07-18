@@ -2,13 +2,13 @@ import { combineReducers } from 'redux';
 
 //Action Types
 export const actionTypes = {
+  GET_ARTIST_DETAIL_TRACKS: 'GET_ARTIST_DETAIL_TRACKS',
+  GET_ARTIST_DETAIL_TRACKS_SUCCESS: 'GET_ARTIST_DETAIL_TRACKS_SUCCESS',
+  GET_ARTIST_DETAIL_TRACKS_FAIL: 'GET_ARTIST_DETAIL_TRACKS_FAIL',
+
   GET_ARTIST_DETAIL: 'GET_ARTIST_DETAIL',
   GET_ARTIST_DETAIL_SUCCESS: 'GET_ARTIST_DETAIL_SUCCESS',
   GET_ARTIST_DETAIL_FAIL: 'GET_ARTIST_DETAIL_FAIL',
-
-  GET_ARTIST_DETAIL_IMAGE: 'GET_ARTIST_DETAIL_IMAGE',
-  GET_ARTIST_DETAIL_IMAGE_SUCCESS: 'GET_ARTIST_DETAIL_IMAGE_SUCCESS',
-  GET_ARTIST_DETAIL_IMAGE_FAIL: 'GET_ARTIST_DETAIL_IMAGE_FAIL',
 
   GET_ARTIST_DETAIL_ALBUMS: 'GET_ARTIST_DETAIL_ALBUMS',
   GET_ARTIST_DETAIL_ALBUMS_SUCCESS: 'GET_ARTIST_DETAIL_ALBUMS_SUCCESS',
@@ -35,12 +35,12 @@ const defaultState = {
 
 function result(state = defaultState, action) {
   switch (action.type) {
-    case actionTypes.GET_ARTIST_DETAIL_SUCCESS:
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS_SUCCESS:
       return {
         ...state,
         ...action.payload,
       };
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE_SUCCESS:
+    case actionTypes.GET_ARTIST_DETAIL_SUCCESS:
       return {
         ...state,
         artist: action.payload,
@@ -57,17 +57,19 @@ function result(state = defaultState, action) {
 
 function error(state = null, action) {
   switch (action.type) {
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS_FAIL:
     case actionTypes.GET_ARTIST_DETAIL_FAIL:
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE_FAIL:
     case actionTypes.GET_ARTIST_DETAIL_ALBUMS_FAIL:
       return action.payload;
+
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS:
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS_SUCCESS:
     case actionTypes.GET_ARTIST_DETAIL:
     case actionTypes.GET_ARTIST_DETAIL_SUCCESS:
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE:
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE_SUCCESS:
     case actionTypes.GET_ARTIST_DETAIL_ALBUMS:
     case actionTypes.GET_ARTIST_DETAIL_ALBUMS_SUCCESS:
       return null;
+
     default:
       return state;
   }
@@ -75,14 +77,14 @@ function error(state = null, action) {
 
 function working(state = false, action) {
   switch (action.type) {
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS:
     case actionTypes.GET_ARTIST_DETAIL:
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE:
     case actionTypes.GET_ARTIST_DETAIL_ALBUMS:
       return true;
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS_FAIL:
+    case actionTypes.GET_ARTIST_DETAIL_TRACKS_SUCCESS:
     case actionTypes.GET_ARTIST_DETAIL_FAIL:
     case actionTypes.GET_ARTIST_DETAIL_SUCCESS:
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE_FAIL:
-    case actionTypes.GET_ARTIST_DETAIL_IMAGE_SUCCESS:
     case actionTypes.GET_ARTIST_DETAIL_ALBUMS_FAIL:
     case actionTypes.GET_ARTIST_DETAIL_ALBUMS_SUCCESS:
       return false;
