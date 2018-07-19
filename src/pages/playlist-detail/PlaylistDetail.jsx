@@ -13,8 +13,8 @@ import {
 import {
   selectPlaylistDetail,
   selectPlaylistCoverImages,
-  selectPlaylistUserName,
-  selectPlaylistTotalSongs,
+  selectPlaylistUser,
+  selectPlaylistDetailItems,
 } from '../../reducers/playlistDetailReducer';
 
 class PlaylistDetail extends Component {
@@ -38,25 +38,25 @@ class PlaylistDetail extends Component {
     this.props.deletePlaylistTrack(trackId, id);
   };
 
-  renderArtist(playlistDetail) {
-    return playlistDetail.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
+  renderArtist(items) {
+    return items.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
   }
 
   renderCoverImage() {
-    const { userName, images, totalSongs } = this.props;
+    const { userName, images, playlistDetail } = this.props;
 
     return images.length > 0 ? (
       <div className={styles.playlisInfoWrapper}>
         <img className={styles.playlistImage} src={images[1].url} alt="playlistCoverImage/60/60" />
         <p className={styles.playlistText}>{`Created by ${userName.display_name}, ${
-          totalSongs.total
+          playlistDetail.total
         } songs`}</p>
       </div>
     ) : null;
   }
 
   renderPlaylist() {
-    const { playlistDetail } = this.props;
+    const { items } = this.props;
     return (
       <DataTable plain>
         <TableHeader>
@@ -70,20 +70,20 @@ class PlaylistDetail extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {playlistDetail.map(playlistDetail => (
-            <TableRow key={playlistDetail.track.id}>
-              <TableColumn>{playlistDetail.track.name}</TableColumn>
+          {items.map(item => (
+            <TableRow key={item.track.id}>
+              <TableColumn>{item.track.name}</TableColumn>
               <TableColumn>
-                <ul>{this.renderArtist(playlistDetail)}</ul>
+                <ul>{this.renderArtist(item)}</ul>
               </TableColumn>
-              <TableColumn>{playlistDetail.track.album.name}</TableColumn>
-              <TableColumn>{format(playlistDetail.added_at, 'DD-MM-YYYY')}</TableColumn>
-              <TableColumn>{format(playlistDetail.track.duration_ms, 'm:ss')}</TableColumn>
+              <TableColumn>{item.track.album.name}</TableColumn>
+              <TableColumn>{format(item.added_at, 'DD-MM-YYYY')}</TableColumn>
+              <TableColumn>{format(item.track.duration_ms, 'm:ss')}</TableColumn>
               <TableColumn>
                 <FontIcon
                   className={styles.icons}
                   onClick={() => {
-                    this.handleDeleteTrack(playlistDetail.track.id);
+                    this.handleDeleteTrack(item.track.id);
                   }}
                 >
                   delete
@@ -110,8 +110,8 @@ const mapStateToProps = state => {
   return {
     playlistDetail: selectPlaylistDetail(state),
     images: selectPlaylistCoverImages(state),
-    userName: selectPlaylistUserName(state),
-    totalSongs: selectPlaylistTotalSongs(state),
+    items: selectPlaylistDetailItems(state),
+    userName: selectPlaylistUser(state),
   };
 };
 
