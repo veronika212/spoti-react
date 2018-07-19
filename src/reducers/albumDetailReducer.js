@@ -62,6 +62,6 @@ export default combineReducers({
 
 //Selectors
 export const selectAlbumDetail = state => state.albumDetail.result;
-export const selectArtists = state => state.albumDetail.result.artists;
-export const selectImages = state => state.albumDetail.result.images;
-export const selectTracks = state => state.albumDetail.result.tracks;
+export const selectArtists = state => selectAlbumDetail(state).artists;
+export const selectImages = state => selectAlbumDetail(state).images;
+export const selectTracks = state => selectAlbumDetail(state).tracks;

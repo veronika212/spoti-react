@@ -15,7 +15,6 @@ export const getAlbumDetail = id => {
 function* doGetAlbumDetailSaga(action) {
   const albumId = action.payload;
   const resp = yield call(api.albumDetail.getAlbum, albumId);
-  console.log(resp, 'resp');
   if (resp.ok === false) {
     return yield put({
       type: actionAlbumDetail.GET_ALBUM_DETAIL_FAIL,
