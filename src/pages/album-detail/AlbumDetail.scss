@@ -1,0 +1,32 @@
+@import '../../css/Colors.scss';
+
+.albumDetail {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem;
+}
+
+.albumDetailImage {
+  margin-right: 2rem;
+}
+
+.albumDetailText {
+  color: $color-light-gray;
+  &_infoSentence {
+    text-transform: uppercase;
+  }
+}
+
+.albumDetailTitle {
+  font-size: 5rem;
+  font-weight: 600;
+  text-shadow: $shadow-dark-gray;
+}
+
+.albumDetailArtist {
+  text-decoration: none;
+  color: gray;
+  :hover {
+    text-decoration: underline;
+  }
+}

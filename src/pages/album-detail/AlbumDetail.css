@@ -1,0 +1,23 @@
+.albumDetail {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem; }
+
+.albumDetailImage {
+  margin-right: 2rem; }
+
+.albumDetailText {
+  color: #90949c; }
+  .albumDetailText_infoSentence {
+    text-transform: uppercase; }
+
+.albumDetailTitle {
+  font-size: 5rem;
+  font-weight: 600;
+  text-shadow: 5px 0px 4px #969696; }
+
+.albumDetailArtist {
+  text-decoration: none;
+  color: gray; }
+  .albumDetailArtist :hover {
+    text-decoration: underline; }

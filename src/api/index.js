@@ -92,4 +92,9 @@ export default {
     getArtist: id => client.get(`${baseUrl}/artists/${id}`),
     getAlbums: id => client.get(`${baseUrl}/artists/${id}/albums`).catch(forwardErrorResponse),
   },
+
+  //AlbumDetail
+  albumDetail: {
+    getAlbum: albumId => client.get(`${baseUrl}/albums/${albumId}`).catch(forwardErrorResponse),
+  },
 };

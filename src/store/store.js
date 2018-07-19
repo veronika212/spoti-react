@@ -14,6 +14,7 @@ import playlistDetailReducer from '../reducers/playlistDetailReducer';
 import playlistsListReducer from '../reducers/playlistsListReducer';
 import artistsReducer from '../reducers/artistsReducer';
 import artistDetailReducer from '../reducers/artistDetailReducer';
+import albumDetailReducer from '../reducers/albumDetailReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   userPlaylists: playlistsListReducer,
   artists: artistsReducer,
   artistDetail: artistDetailReducer,
+  albumDetail: albumDetailReducer,
 });
 
 const persistedReducer = persistReducer(
