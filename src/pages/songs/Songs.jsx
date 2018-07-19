@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
 import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
+import { Link } from 'react-router-dom';
 
 import styles from './Songs.css';
 import '../../App.css';
@@ -18,7 +19,15 @@ class Songs extends Component {
   };
 
   renderArtist(song) {
-    return song.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
+    return song.track.artists.map(artist => (
+      <li key={artist.id}>
+        <span>
+          <Link className={styles.link} to={`/artists/${artist.id}`}>
+            {artist.name}
+          </Link>
+        </span>
+      </li>
+    ));
   }
 
   renderSong() {
@@ -31,7 +40,9 @@ class Songs extends Component {
             <TableColumn>Artists</TableColumn>
             <TableColumn>Album</TableColumn>
             <TableColumn>Added at</TableColumn>
-            <TableColumn>Time</TableColumn>
+            <TableColumn>
+              <FontIcon>query_builder</FontIcon>
+            </TableColumn>
             <TableColumn>Delete</TableColumn>
           </TableRow>
         </TableHeader>
@@ -42,7 +53,11 @@ class Songs extends Component {
               <TableColumn>
                 <ul>{this.renderArtist(song)}</ul>
               </TableColumn>
-              <TableColumn>{song.track.album.name}</TableColumn>
+              <TableColumn>
+                <Link className={styles.link} to={`/albums/${song.track.album.id}`}>
+                  {song.track.album.name}
+                </Link>
+              </TableColumn>
               <TableColumn>{format(song.added_at, 'DD-MM-YYYY')}</TableColumn>
               <TableColumn>{format(song.track.duration_ms, 'm:ss')}</TableColumn>
               <TableColumn>
@@ -65,6 +80,8 @@ class Songs extends Component {
   render() {
     return (
       <div>
+        <h1 className={styles.title}>Songs</h1>
+        <hr className={styles.line} />
         <ul>{this.renderSong()}</ul>
       </div>
     );

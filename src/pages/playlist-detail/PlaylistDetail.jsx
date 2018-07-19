@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
 import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames/bind';
 
 import styles from '../playlist-detail/PlaylistDetail.css';
 import '../../App.css';
@@ -15,7 +17,10 @@ import {
   selectPlaylistCoverImages,
   selectPlaylistUser,
   selectPlaylistDetailItems,
+  selectPlaylistAditionalInfo,
 } from '../../reducers/playlistDetailReducer';
+
+let cx = classNames.bind(styles);
 
 class PlaylistDetail extends Component {
   componentDidMount() {
@@ -39,18 +44,30 @@ class PlaylistDetail extends Component {
   };
 
   renderArtist(items) {
-    return items.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
+    return items.track.artists.map(artist => (
+      <li key={artist.id}>
+        <span>
+          <Link className={styles.link} to={`/artists/${artist.id}`}>
+            {artist.name}
+          </Link>
+        </span>
+      </li>
+    ));
   }
 
   renderCoverImage() {
-    const { userName, images, playlistDetail } = this.props;
+    const { userName, images, playlistDetail, playlistInfo } = this.props;
 
     return images.length > 0 ? (
       <div className={styles.playlisInfoWrapper}>
         <img className={styles.playlistImage} src={images[1].url} alt="playlistCoverImage/60/60" />
-        <p className={styles.playlistText}>{`Created by ${userName.display_name}, ${
-          playlistDetail.total
-        } songs`}</p>
+        <div className={styles.playlistText}>
+          <p className={cx(styles.playlistText, styles.playlistText_title)}>Playlist</p>
+          <p className={styles.name}>{playlistInfo.name}</p>
+          <p className={styles.playlistText}>
+            {`Created by ${userName.display_name}`} &bull; {`${playlistDetail.total} songs`}
+          </p>
+        </div>
       </div>
     ) : null;
   }
@@ -61,22 +78,30 @@ class PlaylistDetail extends Component {
       <DataTable plain>
         <TableHeader>
           <TableRow>
+            <TableColumn>Number</TableColumn>
             <TableColumn>Title</TableColumn>
             <TableColumn>Artists</TableColumn>
             <TableColumn>Album</TableColumn>
             <TableColumn>Added at</TableColumn>
-            <TableColumn>Time</TableColumn>
+            <TableColumn>
+              <FontIcon>query_builder</FontIcon>
+            </TableColumn>
             <TableColumn>Delete</TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {items.map(item => (
+          {items.map((item, index) => (
             <TableRow key={item.track.id}>
+              <TableColumn>{index + 1}</TableColumn>
               <TableColumn>{item.track.name}</TableColumn>
               <TableColumn>
                 <ul>{this.renderArtist(item)}</ul>
               </TableColumn>
-              <TableColumn>{item.track.album.name}</TableColumn>
+              <TableColumn>
+                <Link className={styles.link} to={`/albums/${item.track.album.id}`}>
+                  {item.track.album.name}
+                </Link>
+              </TableColumn>
               <TableColumn>{format(item.added_at, 'DD-MM-YYYY')}</TableColumn>
               <TableColumn>{format(item.track.duration_ms, 'm:ss')}</TableColumn>
               <TableColumn>
@@ -97,6 +122,7 @@ class PlaylistDetail extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {this.renderCoverImage()}
@@ -106,12 +132,13 @@ class PlaylistDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     playlistDetail: selectPlaylistDetail(state),
     images: selectPlaylistCoverImages(state),
     items: selectPlaylistDetailItems(state),
     userName: selectPlaylistUser(state),
+    playlistInfo: selectPlaylistAditionalInfo(state, ownProps.match.params.id),
   };
 };
 

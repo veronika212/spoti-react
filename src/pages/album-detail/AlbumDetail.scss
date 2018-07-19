@@ -20,12 +20,15 @@
 .albumDetailTitle {
   font-size: 5rem;
   font-weight: 600;
+  color: $color-light2-black;
   text-shadow: $shadow-dark-gray;
+  line-height: normal;
+  padding: 1rem 0;
 }
 
 .albumDetailArtist {
   text-decoration: none;
-  color: gray;
+  color: $color-dark-gray;
   :hover {
     text-decoration: underline;
   }

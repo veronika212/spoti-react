@@ -29,3 +29,13 @@
 
 .artistsPopularity {
   color: #90949c; }
+
+.title {
+  font-size: 5rem;
+  font-weight: 600;
+  color: #0000008a;
+  text-shadow: 5px 0px 4px #969696;
+  margin: 2rem 0 0 1rem; }
+
+.line {
+  margin-bottom: 3rem; }

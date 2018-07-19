@@ -1,20 +1,41 @@
+@import '../../css/Colors.scss';
+
 //style is App.scss, but it is not working
 .icons {
   cursor: pointer;
 }
 
+.link {
+  text-decoration: none;
+  color: $color-light-black;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .playlisInfoWrapper {
   display: flex;
+  flex-direction: row;
   margin: 2rem;
 }
 
 .playlistImage {
-  margin: 0 2rem;
-  width: 25%;
-  height: 20rem;
+  margin-right: 2rem;
 }
+
 .playlistText {
-  width: 25%;
-  height: 20rem;
-  overflow: auto;
+  color: $color-light-gray;
+  align-self: center;
+  &_title {
+    text-transform: uppercase;
+  }
+}
+
+.name {
+  font-size: 5rem;
+  font-weight: 600;
+  color: $color-light2-black;
+  text-shadow: $shadow-dark-gray;
+  line-height: normal;
+  padding: 1rem 0;
 }

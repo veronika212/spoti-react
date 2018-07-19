@@ -6,7 +6,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', minHeight: '100vh' }}>
         <Menu className="menu" />
         <div className="appContent" style={{ width: '100%' }}>
           {this.props.children}

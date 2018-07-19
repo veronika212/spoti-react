@@ -75,9 +75,9 @@ class AlbumDetail extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {tracks.items.map(track => (
+          {tracks.items.map((track, index) => (
             <TableRow key={track.id}>
-              <TableColumn>{track.track_number}</TableColumn>
+              <TableColumn>{index + 1}</TableColumn>
               <TableColumn>{track.name}</TableColumn>
               <TableColumn>{format(track.duration_ms, 'm:ss')}</TableColumn>
             </TableRow>

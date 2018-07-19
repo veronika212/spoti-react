@@ -14,10 +14,13 @@
 .albumDetailTitle {
   font-size: 5rem;
   font-weight: 600;
-  text-shadow: 5px 0px 4px #969696; }
+  color: #0000008a;
+  text-shadow: 5px 0px 4px #969696;
+  line-height: normal;
+  padding: 1rem 0; }
 
 .albumDetailArtist {
   text-decoration: none;
-  color: gray; }
+  color: #4b4f56; }
   .albumDetailArtist :hover {
     text-decoration: underline; }

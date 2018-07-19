@@ -81,3 +81,6 @@ export const selectPlaylistDetail = state => state.playlistDetail.result;
 export const selectPlaylistDetailItems = state => selectPlaylistDetail(state).items;
 export const selectPlaylistCoverImages = state => selectPlaylistDetail(state).images;
 export const selectPlaylistUser = state => state.userProfile.result;
+export const selectPlaylistAditionalInfo = (state, playlistId) => {
+  return state.userPlaylists.result.items.find(playlist => playlist.id === playlistId);
+};

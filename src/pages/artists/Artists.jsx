@@ -36,7 +36,11 @@ class Artists extends Component {
   render() {
     const { artists } = this.props;
     return artists.length > 0 ? (
-      <ul className={styles.imageArtistsList}>{this.renderArtists()}</ul>
+      <div>
+        <h1 className={styles.title}>Artists</h1>
+        <hr className={styles.line} />
+        <ul className={styles.imageArtistsList}>{this.renderArtists()}</ul>
+      </div>
     ) : null;
   }
 }
