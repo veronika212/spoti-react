@@ -33,6 +33,15 @@ function result(state = defaultState, action) {
         ...state,
         images: action.payload,
       };
+    case actionTypes.DELETE_PLAYLIST_TRACK_SUCCESS:
+      const deletedTrackPosition = state.items.findIndex(item => item.track.id === action.payload);
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, deletedTrackPosition),
+          ...state.items.slice(deletedTrackPosition + 1),
+        ],
+      };
     default:
       return state;
   }

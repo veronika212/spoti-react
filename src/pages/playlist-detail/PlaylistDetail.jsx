@@ -38,9 +38,9 @@ class PlaylistDetail extends Component {
     }
   }
 
-  handleDeleteTrack = trackId => {
+  handleDeleteTrack = track => {
     const { id } = this.props.match.params;
-    this.props.deletePlaylistTrack(trackId, id);
+    this.props.deletePlaylistTrack(track, id);
   };
 
   renderArtist(items) {
@@ -57,10 +57,14 @@ class PlaylistDetail extends Component {
 
   renderCoverImage() {
     const { userName, images, playlistDetail, playlistInfo } = this.props;
+    if (!playlistInfo) {
+      return null;
+    }
+    const imageUrl = images.length === 0 ? 'http://lorempixel.com/400/400' : images[1].url;
 
-    return images.length > 0 ? (
+    return (
       <div className={styles.playlisInfoWrapper}>
-        <img className={styles.playlistImage} src={images[1].url} alt="playlistCoverImage/60/60" />
+        <img className={styles.playlistImage} src={imageUrl} alt="playlistCoverImage/60/60" />
         <div className={styles.playlistText}>
           <p className={cx(styles.playlistText, styles.playlistText_title)}>Playlist</p>
           <p className={styles.name}>{playlistInfo.name}</p>
@@ -69,7 +73,7 @@ class PlaylistDetail extends Component {
           </p>
         </div>
       </div>
-    ) : null;
+    );
   }
 
   renderPlaylist() {
@@ -108,7 +112,7 @@ class PlaylistDetail extends Component {
                 <FontIcon
                   className={styles.icons}
                   onClick={() => {
-                    this.handleDeleteTrack(item.track.id);
+                    this.handleDeleteTrack(item.track);
                   }}
                 >
                   delete
@@ -122,7 +126,6 @@ class PlaylistDetail extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         {this.renderCoverImage()}
