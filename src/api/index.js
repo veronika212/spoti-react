@@ -25,7 +25,6 @@ function forwardErrorResponse(err) {
     ok: false,
   };
   if (resp.error.message === 'Only valid bearer authentication supported') {
-    window.location.href = '/login';
     return;
   }
   return resp;
