@@ -20,6 +20,16 @@ function result(state = defaultState, action) {
   switch (action.type) {
     case actionTypes.GET_SONGS_SUCCESS:
       return action.payload;
+    case actionTypes.DELETE_SONG_SUCCESS:
+      const deleteSongIndex = state.items.findIndex(song => song.track.id === action.payload);
+
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, deleteSongIndex),
+          ...state.items.slice(deleteSongIndex + 1),
+        ],
+      };
     default:
       return state;
   }
