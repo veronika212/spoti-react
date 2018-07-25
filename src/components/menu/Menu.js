@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import { Button, Drawer, Toolbar } from 'react-md';
 import { List, ListItem } from 'react-md';
 
@@ -61,7 +61,7 @@ class Menu extends Component {
         onVisibilityChange={this.handleVisibility}
         navItems={this.renderNavItems()}
         className={styles.menu}
-        onVisibilityChange={() => {}}
+        // onVisibilityChange={() => {}}
         clickableDesktopOverlay={false}
         header={
           <Toolbar
