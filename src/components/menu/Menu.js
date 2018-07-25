@@ -61,7 +61,7 @@ class Menu extends Component {
         onVisibilityChange={this.handleVisibility}
         navItems={this.renderNavItems()}
         className={styles.menu}
-        // onVisibilityChange={() => {}}
+        onVisibilityChange={() => {}}
         clickableDesktopOverlay={false}
         header={
           <Toolbar

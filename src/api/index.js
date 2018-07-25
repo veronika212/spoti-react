@@ -71,7 +71,6 @@ export default {
 
     deleteTrack: (playlistId, userId, deletedTracks) => {
       console.log(deletedTracks);
-      //{ data: { foo: "bar" } }
       client.delete(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`, {
         data: {
           tracks: deletedTracks,
@@ -103,5 +102,10 @@ export default {
   //AlbumDetail
   albumDetail: {
     getAlbum: albumId => client.get(`${baseUrl}/albums/${albumId}`).catch(forwardErrorResponse),
+  },
+
+  //Search
+  search: {
+    get: query => client.get(`${baseUrl}/search?q=${query}`).catch(forwardErrorResponse),
   },
 };
