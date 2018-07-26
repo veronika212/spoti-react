@@ -26,7 +26,15 @@ class Search extends Component {
     const { query } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" value={query} onChange={event => this.onInputChange(event)} />
+        <div>
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="Search"
+            value={query}
+            onChange={event => this.onInputChange(event)}
+          />
+        </div>
       </form>
     );
   }
