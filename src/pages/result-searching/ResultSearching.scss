@@ -1,0 +1,49 @@
+@import '../../css/Colors.scss';
+
+.wrapper {
+  margin: 2rem;
+}
+
+.title {
+  margin-top: 5rem;
+  color: $color-light-gray;
+  font-size: 1.5rem;
+  &_second {
+    margin-top: 2rem;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: $color-light-black;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.itemsSearch {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.itemSearch {
+  width: 10%;
+  margin: 1rem 0.3rem 0 0.3rem;
+}
+.searchImg {
+  width: 100%;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: $color-dark-gray;
+  &_name {
+    font-weight: normal;
+    color: $color-dark-gray;
+  }
+}

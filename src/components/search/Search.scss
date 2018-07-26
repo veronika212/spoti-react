@@ -10,4 +10,8 @@
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 9px;
+  &:focus {
+    box-shadow: 11px 12px 9px -6px rgba(0, 0, 0, 0.75);
+    outline: none;
+  }
 }

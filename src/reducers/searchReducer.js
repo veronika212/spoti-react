@@ -51,3 +51,10 @@ export default combineReducers({
   error,
   working,
 });
+
+// Selectors
+export const resultSearching = state => state.search.result;
+export const albums = state => resultSearching(state).albums;
+export const artists = state => resultSearching(state).artists;
+export const playlists = state => resultSearching(state).playlists;
+export const tracks = state => resultSearching(state).tracks;
