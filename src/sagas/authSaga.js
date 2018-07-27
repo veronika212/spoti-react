@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
 import { actionTypes as authActionTypes } from '../reducers/authReducer';
 
 export const loginSuccess = payload => {

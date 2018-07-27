@@ -4,10 +4,33 @@
   margin: 2rem;
 }
 
+.contentOfPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.titleOfPage {
+  font-size: 5rem;
+  font-weight: 600;
+  color: $color-light2-black;
+  text-shadow: $shadow-dark-gray;
+  margin-top: 2rem;
+}
+
+.nameOfPage {
+  align-self: center;
+  margin-left: 4rem;
+  font-size: 6rem;
+  font-weight: 600;
+  color: $color-light2-black;
+  text-shadow: 5px 0px 4px #887b7b;
+}
+
 .title {
   margin-top: 5rem;
   color: $color-light-gray;
   font-size: 1.5rem;
+  font-weight: 600;
   &_second {
     margin-top: 2rem;
   }
@@ -35,6 +58,10 @@
 }
 .searchImg {
   width: 100%;
+  &_imgOfPage {
+    border-radius: 50%;
+    box-shadow: $shadow-dark-gray;
+  }
 }
 
 .text {

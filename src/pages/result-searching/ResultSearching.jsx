@@ -9,6 +9,29 @@ import styles from './ResultSearching.css';
 let cx = classNames.bind(styles);
 
 class ResultSearching extends Component {
+  renderHeader() {
+    const artist = this.props.artists.items[0];
+    console.log(artist);
+    if (!artist) {
+      return null;
+    }
+
+    return (
+      <div className={styles.contentOfPage}>
+        <Link to={`/artists/${artist.id}`}>
+          <img
+            className={cx(styles.searchImg, styles.searchImg_imgOfPage)}
+            src={artist.images[1].url}
+            alt="avatar/64/64"
+          />
+        </Link>
+        <Link className={cx(styles.link, styles.nameOfPage)} to={`/artists/${artist.id}`}>
+          <p>{artist.name}</p>
+        </Link>
+      </div>
+    );
+  }
+
   renderSongs() {
     const { tracks } = this.props;
     return tracks.items.map(track => {
@@ -102,6 +125,8 @@ class ResultSearching extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
+        <h1 className={styles.titleOfPage}>Result of searching</h1>
+        {this.renderHeader()}
         <h1 className={styles.title}>Songs</h1>
         <hr />
         <ul className={styles.itemsSearch}>{this.renderSongs()}</ul>

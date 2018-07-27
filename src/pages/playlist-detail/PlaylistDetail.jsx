@@ -60,7 +60,7 @@ class PlaylistDetail extends Component {
     if (!playlistInfo) {
       return null;
     }
-    const imageUrl = images.length === 0 ? 'http://lorempixel.com/400/400' : images[1].url;
+    const imageUrl = images.length === 0 ? 'https://picsum.photos/300' : images[1].url;
 
     return (
       <div className={styles.playlisInfoWrapper}>
@@ -130,6 +130,7 @@ class PlaylistDetail extends Component {
       <div>
         {this.renderCoverImage()}
         <ul>{this.renderPlaylist()}</ul>
+        <hr />
       </div>
     );
   }
