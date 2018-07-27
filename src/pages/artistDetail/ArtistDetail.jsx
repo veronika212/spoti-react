@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
 import { Link } from 'react-router-dom';
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
+import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
 import classNames from 'classnames/bind';
 
 import {
@@ -65,21 +65,30 @@ class ArtistDetail extends Component {
             <TableColumn>Title</TableColumn>
             <TableColumn>Album</TableColumn>
             <TableColumn>Popularity</TableColumn>
-            <TableColumn>Time</TableColumn>
+            <TableColumn>
+              <FontIcon>query_builder</FontIcon>
+            </TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
           {artistDetailTracks.map(track => (
             <TableRow key={track.id}>
               <TableColumn>
-                <img
-                  className={styles.tableImage}
-                  src={track.album.images[2].url}
-                  alt="artistDetailImage"
-                />
+                <Link to={`/albums/${track.album.id}`}>
+                  <img
+                    className={styles.tableImage}
+                    src={track.album.images[2].url}
+                    alt="artistDetailImage"
+                  />
+                </Link>
               </TableColumn>
               <TableColumn>{track.name}</TableColumn>
-              <TableColumn>{track.album.name}</TableColumn>
+              <TableColumn>
+                {' '}
+                <Link className={styles.link} to={`/albums/${track.album.id}`}>
+                  {track.album.name}
+                </Link>
+              </TableColumn>
               <TableColumn>{track.popularity}</TableColumn>
               <TableColumn>{format(track.duration_ms, 'm:ss')}</TableColumn>
             </TableRow>
@@ -103,7 +112,14 @@ class ArtistDetail extends Component {
           </Link>
           <div>
             <p className={styles.albumItemText}>{format(item.release_date, 'DD.MM.YYYY')}</p>
-            <p className={cx(styles.albumItemText, styles.albumItemText_title)}>{item.name}</p>
+            <p className={styles.albumItemText}>
+              <Link
+                className={cx(styles.albumItemText, styles.albumItemText_title, styles.link)}
+                to={`/albums/${item.id}`}
+              >
+                {item.name}
+              </Link>
+            </p>
           </div>
         </li>
       );

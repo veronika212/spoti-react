@@ -1,5 +1,13 @@
 @import '../../css/Colors.scss';
 
+.link {
+  text-decoration: none;
+  color: $color-light-black;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .artistDetailHeader {
   display: flex;
   flex-direction: row;
@@ -19,8 +27,10 @@
 .name {
   font-size: 6rem;
   font-weight: 600;
-  color: $color-dark-gray;
+  color: $color-light2-black;
   text-shadow: $shadow-dark-gray;
+  line-height: normal;
+  padding-bottom: 1rem;
 }
 
 .text {

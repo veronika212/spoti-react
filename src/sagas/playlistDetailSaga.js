@@ -3,6 +3,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import api from '../api';
 import { actionTypes as playlistDetailTypes } from '../reducers/playlistDetailReducer';
 import { selectUserId } from '../reducers/userProfileReducer';
+import { selectPlaylistDetailItems } from '../reducers/playlistDetailReducer';
 
 export const getPlaylistDetail = id => {
   return {
@@ -18,12 +19,12 @@ export const getPlaylistCoverImage = id => {
   };
 };
 
-export const deletePlaylistTrack = (trackId, playlistId) => {
+export const deletePlaylistTrack = (track, playlistId) => {
   return {
     type: playlistDetailTypes.DELETE_PLAYLIST_TRACK,
     payload: {
       playlistId,
-      trackId,
+      track,
     },
   };
 };
@@ -64,26 +65,28 @@ function* doGetPlaylistImageCover(action) {
 
 function* doDeletePlaylistTrack(action) {
   const userId = yield select(selectUserId);
-  const { playlistId } = action.payload;
-  const uriTracks = {
-    tracks: [
-      {
-        uri: 'spotify:track:2uQl5yUZ0rKuXV0DmndNsw',
-        positions: [0],
-      },
-    ],
-  };
-  const resp = yield call(api.playlist.deleteTrack, playlistId, userId, uriTracks);
+  const { playlistId, track } = action.payload;
+  const playlistItems = yield select(selectPlaylistDetailItems);
+  const trackPosition = playlistItems.findIndex(item => item.track.id === track.id);
+  // console.log(trackPosition, 'trackPosition');
+  const deletedTrack = [
+    {
+      uri: track.uri,
+      positions: [trackPosition],
+    },
+  ];
 
+  const resp = yield call(api.playlist.deleteTrack, playlistId, userId, deletedTrack);
+  console.log(resp, 'resp');
   if (resp.ok === false) {
     return yield put({
-      type: playlistDetailTypes.DELETE_PLAYLIST_DETAIL_FAIL,
+      type: playlistDetailTypes.DELETE_PLAYLIST_TRACK_FAIL,
       payload: resp.error.message,
     });
   }
 
   yield put({
-    type: playlistDetailTypes.DELETE_PLAYLIST_DETAIL_SUCCESS,
+    type: playlistDetailTypes.DELETE_PLAYLIST_TRACK_SUCCESS,
     payload: resp.data,
   });
 }

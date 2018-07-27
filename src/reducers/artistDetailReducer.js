@@ -103,4 +103,4 @@ export default combineReducers({
 export const selectArtistDetail = state => state.artistDetail.result.artist;
 export const selectArtistDetailTracks = state => state.artistDetail.result.tracks;
 export const selectArtistDetailAlbums = state => state.artistDetail.result.albums;
-export const selectArtistDetailAlbumsItems = state => state.artistDetail.result.albums.items;
+export const selectArtistDetailAlbumsItems = state => selectArtistDetailAlbums(state).items;

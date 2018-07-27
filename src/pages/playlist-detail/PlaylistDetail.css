@@ -1,16 +1,31 @@
 .icons {
   cursor: pointer; }
 
+.link {
+  text-decoration: none;
+  color: #000000de; }
+  .link:hover {
+    text-decoration: underline; }
+
 .playlisInfoWrapper {
   display: flex;
+  flex-direction: row;
   margin: 2rem; }
 
 .playlistImage {
-  margin: 0 2rem;
-  width: 25%;
-  height: 20rem; }
+  margin-right: 2rem;
+  margin-top: 2rem; }
 
 .playlistText {
-  width: 25%;
-  height: 20rem;
-  overflow: auto; }
+  color: #90949c;
+  align-self: center; }
+  .playlistText_title {
+    text-transform: uppercase; }
+
+.name {
+  font-size: 5rem;
+  font-weight: 600;
+  color: #0000008a;
+  text-shadow: 5px 0px 4px #887b7b;
+  line-height: normal;
+  padding: 1rem 0; }

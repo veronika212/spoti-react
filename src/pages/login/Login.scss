@@ -1,0 +1,28 @@
+@import '../../css/Colors.scss';
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.link {
+  text-decoration: none;
+  color: $color-light-black;
+  width: 3.4285714285714284em;
+  background: #606060b5;
+  text-align: center;
+  border-radius: 0.14285714285714285em;
+  &:hover {
+    background: #6060603d;
+  }
+}
+
+.iconPerson {
+  font-size: 40px;
+  color: #000000de;
+  margin-right: 1rem;
+}

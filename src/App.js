@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 
 import Menu from '../src/components/menu/Menu';
+import Header from '../src/header/Header';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', minHeight: '100vh' }}>
         <Menu className="menu" />
         <div className="appContent" style={{ width: '100%' }}>
-          {this.props.children}
+          <Header />
+          <div style={{ marginTop: '4rem' }}>{this.props.children}</div>
         </div>
       </div>
     );

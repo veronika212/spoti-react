@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FontIcon } from 'react-md';
 
 import { loginSuccess } from '../../sagas/authSaga';
 import { history } from '../../index';
+import styles from '../login/Login.css';
 
 class LoginForm extends Component {
   componentDidMount() {
@@ -35,8 +37,11 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        <a href="http://localhost:8888">login</a>
+      <div className={styles.login}>
+        <FontIcon className={styles.iconPerson}>person</FontIcon>
+        <a className={styles.link} href="http://localhost:8888">
+          login
+        </a>
       </div>
     );
   }

@@ -13,7 +13,7 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var user_id = '';
+// var user_id = '';
 // var client_id = 'e2357825e5db43cc8b76fcb6e8679ab8'; // Your client id
 var client_id = '1b34d8d04b0b4ba8bc7306223ae27c1f';
 
@@ -51,7 +51,8 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email user-library-read';
+  var scope =
+    'user-read-private user-read-email user-library-read user-library-modify playlist-modify-private playlist-modify-public';
   res.redirect(
     'https://accounts.spotify.com/authorize?' +
       querystring.stringify({

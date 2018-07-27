@@ -8,6 +8,7 @@ import playlistsListSaga from '../sagas/playlistsListSaga';
 import artistsSaga from '../sagas/artistsSaga';
 import artistDetailSaga from '../sagas/artistDetailSaga';
 import albumDetailSaga from '../sagas/albumDetailSaga';
+import searchSaga from '../sagas/searchSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -19,5 +20,6 @@ export default function* rootSaga() {
     artistsSaga(),
     artistDetailSaga(),
     albumDetailSaga(),
+    searchSaga(),
   ]);
 }

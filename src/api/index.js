@@ -52,7 +52,7 @@ export default {
   // Songs
   songs: {
     getSongs: () => client.get(`${baseUrl}/me/tracks`).catch(forwardErrorResponse),
-    delete: id => client.delete(`${baseUrl}/me/tracks/${id}`).catch(forwardErrorResponse),
+    delete: id => client.delete(`${baseUrl}/me/tracks/?ids=${id}`).catch(forwardErrorResponse),
   },
 
   // PlaylistDetail
@@ -65,11 +65,17 @@ export default {
       client
         .get(`${baseUrl}/users/${userId}/playlists/${playlistId}/images`)
         .catch(forwardErrorResponse),
-    // delete: (playlistId, userId) =>
-    //   client.delete(`${baseUrl}/users/${userId}/playlist/${playlistId}/tracks`),
+    delete: (playlistId, userId) =>
+      client.delete(`${baseUrl}/users/${userId}/playlist/${playlistId}/tracks`),
 
-    deleteTrack: (playlistId, userId, tracks) =>
-      client.delete(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`, tracks),
+    deleteTrack: (playlistId, userId, deletedTracks) => {
+      console.log(deletedTracks);
+      client.delete(`${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`, {
+        data: {
+          tracks: deletedTracks,
+        },
+      });
+    },
   },
 
   // Playlists
@@ -95,5 +101,10 @@ export default {
   //AlbumDetail
   albumDetail: {
     getAlbum: albumId => client.get(`${baseUrl}/albums/${albumId}`).catch(forwardErrorResponse),
+  },
+
+  //Search
+  search: {
+    get: query => client.get(`${baseUrl}/search?q=${query}`).catch(forwardErrorResponse),
   },
 };

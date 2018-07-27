@@ -1,8 +1,27 @@
-// .songs {
-//   background: purple;
-// }
+@import '../../css/Colors.scss';
 
 //style is App.scss, but it is not working
+
 .icons {
   cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: $color-light-black;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 600;
+  color: $color-light2-black;
+  text-shadow: $shadow-dark-gray;
+  margin: 2rem 0 0 1rem;
+}
+
+.line {
+  margin-bottom: 3rem;
 }

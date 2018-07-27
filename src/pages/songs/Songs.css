@@ -1,2 +1,18 @@
 .icons {
   cursor: pointer; }
+
+.link {
+  text-decoration: none;
+  color: #000000de; }
+  .link:hover {
+    text-decoration: underline; }
+
+.title {
+  font-size: 5rem;
+  font-weight: 600;
+  color: #0000008a;
+  text-shadow: 5px 0px 4px #887b7b;
+  margin: 2rem 0 0 1rem; }
+
+.line {
+  margin-bottom: 3rem; }

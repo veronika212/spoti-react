@@ -10,10 +10,10 @@ export const getSongs = () => {
   };
 };
 
-export const deleteSong = id => {
+export const deleteSong = ids => {
   return {
     type: songsActionTypes.DELETE_SONG,
-    payload: id,
+    payload: ids,
   };
 };
 
@@ -34,19 +34,19 @@ function* doGetSongs(action) {
 }
 
 function* doDeleteSong(action) {
-  console.log('doDeleteSong');
-  // try {
-  //   const resp = yield call(api.songs.delete, action.payload);
-  //   yield put({
-  //     type: songsActionTypes.DELETE_SONG_SUCCESS,
-  //     payload: resp.data,
-  //   });
-  // } catch (error) {
-  //   yield put({
-  //     type: songsActionTypes.DELETE_SONG_FAIL,
-  //     payload: error,
-  //   });
-  // }
+  // console.log('doDeleteSong');
+  try {
+    yield call(api.songs.delete, action.payload);
+    yield put({
+      type: songsActionTypes.DELETE_SONG_SUCCESS,
+      payload: action.payload,
+    });
+  } catch (error) {
+    yield put({
+      type: songsActionTypes.DELETE_SONG_FAIL,
+      payload: error,
+    });
+  }
 }
 
 export default function* songsSaga() {

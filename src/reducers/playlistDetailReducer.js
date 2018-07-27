@@ -33,6 +33,15 @@ function result(state = defaultState, action) {
         ...state,
         images: action.payload,
       };
+    case actionTypes.DELETE_PLAYLIST_TRACK_SUCCESS:
+      const deletedTrackPosition = state.items.findIndex(item => item.track.id === action.payload);
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, deletedTrackPosition),
+          ...state.items.slice(deletedTrackPosition + 1),
+        ],
+      };
     default:
       return state;
   }
@@ -77,7 +86,10 @@ export default combineReducers({
 /**
  * Selectors
  */
-export const selectPlaylistDetail = state => state.playlistDetail.result.items;
-export const selectPlaylistCoverImages = state => state.playlistDetail.result.images;
-export const selectPlaylistUserName = state => state.userProfile.result;
-export const selectPlaylistTotalSongs = state => state.playlistDetail.result;
+export const selectPlaylistDetail = state => state.playlistDetail.result;
+export const selectPlaylistDetailItems = state => selectPlaylistDetail(state).items;
+export const selectPlaylistCoverImages = state => selectPlaylistDetail(state).images;
+export const selectPlaylistUser = state => state.userProfile.result;
+export const selectPlaylistAditionalInfo = (state, playlistId) => {
+  return state.userPlaylists.result.items.find(playlist => playlist.id === playlistId);
+};

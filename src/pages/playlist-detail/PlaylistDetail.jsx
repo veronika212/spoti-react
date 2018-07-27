@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
 import { DataTable, FontIcon, TableHeader, TableBody, TableRow, TableColumn } from 'react-md';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames/bind';
 
 import styles from '../playlist-detail/PlaylistDetail.css';
 import '../../App.css';
@@ -13,9 +15,12 @@ import {
 import {
   selectPlaylistDetail,
   selectPlaylistCoverImages,
-  selectPlaylistUserName,
-  selectPlaylistTotalSongs,
+  selectPlaylistUser,
+  selectPlaylistDetailItems,
+  selectPlaylistAditionalInfo,
 } from '../../reducers/playlistDetailReducer';
+
+let cx = classNames.bind(styles);
 
 class PlaylistDetail extends Component {
   componentDidMount() {
@@ -33,57 +38,81 @@ class PlaylistDetail extends Component {
     }
   }
 
-  handleDeleteTrack = trackId => {
+  handleDeleteTrack = track => {
     const { id } = this.props.match.params;
-    this.props.deletePlaylistTrack(trackId, id);
+    this.props.deletePlaylistTrack(track, id);
   };
 
-  renderArtist(playlistDetail) {
-    return playlistDetail.track.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
+  renderArtist(items) {
+    return items.track.artists.map(artist => (
+      <li key={artist.id}>
+        <span>
+          <Link className={styles.link} to={`/artists/${artist.id}`}>
+            {artist.name}
+          </Link>
+        </span>
+      </li>
+    ));
   }
 
   renderCoverImage() {
-    const { userName, images, totalSongs } = this.props;
+    const { userName, images, playlistDetail, playlistInfo } = this.props;
+    if (!playlistInfo) {
+      return null;
+    }
+    const imageUrl = images.length === 0 ? 'http://lorempixel.com/400/400' : images[1].url;
 
-    return images.length > 0 ? (
+    return (
       <div className={styles.playlisInfoWrapper}>
-        <img className={styles.playlistImage} src={images[1].url} alt="playlistCoverImage/60/60" />
-        <p className={styles.playlistText}>{`Created by ${userName.display_name}, ${
-          totalSongs.total
-        } songs`}</p>
+        <img className={styles.playlistImage} src={imageUrl} alt="playlistCoverImage/60/60" />
+        <div className={styles.playlistText}>
+          <p className={cx(styles.playlistText, styles.playlistText_title)}>Playlist</p>
+          <p className={styles.name}>{playlistInfo.name}</p>
+          <p className={styles.playlistText}>
+            {`Created by ${userName.display_name}`} &bull; {`${playlistDetail.total} songs`}
+          </p>
+        </div>
       </div>
-    ) : null;
+    );
   }
 
   renderPlaylist() {
-    const { playlistDetail } = this.props;
+    const { items } = this.props;
     return (
       <DataTable plain>
         <TableHeader>
           <TableRow>
+            <TableColumn>Number</TableColumn>
             <TableColumn>Title</TableColumn>
             <TableColumn>Artists</TableColumn>
             <TableColumn>Album</TableColumn>
             <TableColumn>Added at</TableColumn>
-            <TableColumn>Time</TableColumn>
+            <TableColumn>
+              <FontIcon>query_builder</FontIcon>
+            </TableColumn>
             <TableColumn>Delete</TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {playlistDetail.map(playlistDetail => (
-            <TableRow key={playlistDetail.track.id}>
-              <TableColumn>{playlistDetail.track.name}</TableColumn>
+          {items.map((item, index) => (
+            <TableRow key={item.track.id}>
+              <TableColumn>{index + 1}</TableColumn>
+              <TableColumn>{item.track.name}</TableColumn>
               <TableColumn>
-                <ul>{this.renderArtist(playlistDetail)}</ul>
+                <ul>{this.renderArtist(item)}</ul>
               </TableColumn>
-              <TableColumn>{playlistDetail.track.album.name}</TableColumn>
-              <TableColumn>{format(playlistDetail.added_at, 'DD-MM-YYYY')}</TableColumn>
-              <TableColumn>{format(playlistDetail.track.duration_ms, 'm:ss')}</TableColumn>
+              <TableColumn>
+                <Link className={styles.link} to={`/albums/${item.track.album.id}`}>
+                  {item.track.album.name}
+                </Link>
+              </TableColumn>
+              <TableColumn>{format(item.added_at, 'DD-MM-YYYY')}</TableColumn>
+              <TableColumn>{format(item.track.duration_ms, 'm:ss')}</TableColumn>
               <TableColumn>
                 <FontIcon
                   className={styles.icons}
                   onClick={() => {
-                    this.handleDeleteTrack(playlistDetail.track.id);
+                    this.handleDeleteTrack(item.track);
                   }}
                 >
                   delete
@@ -106,12 +135,13 @@ class PlaylistDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     playlistDetail: selectPlaylistDetail(state),
     images: selectPlaylistCoverImages(state),
-    userName: selectPlaylistUserName(state),
-    totalSongs: selectPlaylistTotalSongs(state),
+    items: selectPlaylistDetailItems(state),
+    userName: selectPlaylistUser(state),
+    playlistInfo: selectPlaylistAditionalInfo(state, ownProps.match.params.id),
   };
 };
 

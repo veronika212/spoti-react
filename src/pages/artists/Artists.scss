@@ -36,3 +36,15 @@
 .artistsPopularity {
   color: $color-light-gray;
 }
+
+.title {
+  font-size: 5rem;
+  font-weight: 600;
+  color: $color-light2-black;
+  text-shadow: $shadow-dark-gray;
+  margin: 2rem 0 0 1rem;
+}
+
+.line {
+  margin-bottom: 3rem;
+}
