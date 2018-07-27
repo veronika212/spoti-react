@@ -18,7 +18,6 @@ class Artists extends Component {
   renderArtists() {
     const { artists } = this.props;
     return artists.map(artist => {
-      console.log(artist);
       const imagesArrayLength = artist.images.length;
       const imageUrl =
         imagesArrayLength === 0
