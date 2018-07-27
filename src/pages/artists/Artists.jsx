@@ -17,12 +17,18 @@ class Artists extends Component {
 
   renderArtists() {
     const { artists } = this.props;
-
     return artists.map(artist => {
+      console.log(artist);
+      const imagesArrayLength = artist.images.length;
+      const imageUrl =
+        imagesArrayLength === 0
+          ? 'https://picsum.photos/200'
+          : artist.images[imagesArrayLength - 1].url;
+
       return (
         <li key={artist.id} className={styles.artistListItem}>
           <Link to={`/artists/${artist.id}`}>
-            <img className={styles.imageArtists} src={artist.images[2].url} alt="artistAvatar" />
+            <img className={styles.imageArtists} src={imageUrl} alt="artistAvatar" />
           </Link>
           <span className={cx(styles.artistsText, styles.artistsName)}>{artist.name}</span>
           <span className={cx(styles.artistsText, styles.artistsPopularity)}>{`popularity: ${
