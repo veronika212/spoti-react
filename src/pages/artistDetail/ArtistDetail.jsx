@@ -42,10 +42,14 @@ class ArtistDetail extends Component {
 
   renderArtistHeader() {
     const { artistDetail } = this.props;
-
-    return artistDetail.images.length > 0 ? (
+    const imagesArrayLength = artistDetail.images.length;
+    const imageUrl =
+      imagesArrayLength === 0
+        ? 'https://picsum.photos/200'
+        : artistDetail.images[imagesArrayLength - 2].url;
+    return artistDetail.images.length === 0 || artistDetail.images.length > 0 ? (
       <div className={styles.artistDetailHeader}>
-        <img className={styles.image} src={artistDetail.images[1].url} alt="artistAvatar/320/320" />
+        <img className={styles.image} src={imageUrl} alt="artistAvatar/320/320" />
         <div className={styles.info}>
           <p className={styles.name}>{artistDetail.name}</p>
           <p className={styles.text}>Followers: {artistDetail.followers.total}</p>
