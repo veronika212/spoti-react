@@ -1,20 +1,18 @@
 @import '../../css/Colors.scss';
 
 .wrapper {
-  margin: 2rem;
+  margin: 5rem 2rem 2rem 2rem;
 }
 
 .contentOfPage {
   display: flex;
   flex-direction: row;
+  margin-top: 2rem;
 }
 
 .titleOfPage {
-  font-size: 5rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: $color-light2-black;
-  text-shadow: $shadow-dark-gray;
-  margin-top: 2rem;
 }
 
 .nameOfPage {
@@ -22,18 +20,17 @@
   margin-left: 4rem;
   font-size: 6rem;
   font-weight: 600;
-  color: $color-light2-black;
-  text-shadow: 5px 0px 4px #887b7b;
+  &_color {
+    color: $color-light2-black;
+    text-shadow: $shadow-light-black;
+  }
 }
 
 .title {
-  margin-top: 5rem;
+  margin-top: 2rem;
   color: $color-light-gray;
   font-size: 1.5rem;
   font-weight: 600;
-  &_second {
-    margin-top: 2rem;
-  }
 }
 
 .link {
@@ -41,6 +38,12 @@
   color: $color-light-black;
   &:hover {
     text-decoration: underline;
+  }
+  &_shadow {
+    &:hover {
+      color: $color-light2-black;
+      text-shadow: $shadow-light-black;
+    }
   }
 }
 

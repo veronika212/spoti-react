@@ -25,8 +25,11 @@ class ResultSearching extends Component {
             alt="avatar/64/64"
           />
         </Link>
-        <Link className={cx(styles.link, styles.nameOfPage)} to={`/artists/${artist.id}`}>
-          <p>{artist.name}</p>
+        <Link
+          className={cx(styles.link, styles.link_shadow, styles.nameOfPage)}
+          to={`/artists/${artist.id}`}
+        >
+          <p className={cx(styles.nemeOfPage, styles.nameOfPage_color)}>{artist.name}</p>
         </Link>
       </div>
     );
@@ -130,13 +133,13 @@ class ResultSearching extends Component {
         <h1 className={styles.title}>Songs</h1>
         <hr />
         <ul className={styles.itemsSearch}>{this.renderSongs()}</ul>
-        <h1 className={cx(styles.title, styles.title_second)}>Artists</h1>
+        <h1 className={styles.title}>Artists</h1>
         <hr />
         <ul className={styles.itemsSearch}>{this.renderArtists()}</ul>
-        <h1 className={cx(styles.title, styles.title_second)}>Albums</h1>
+        <h1 className={styles.title}>Albums</h1>
         <hr />
         <ul className={styles.itemsSearch}>{this.renderAlbums()}</ul>
-        <h1 className={cx(styles.title, styles.title_second)}>Playlists</h1>
+        <h1 className={styles.title}>Playlists</h1>
         <hr />
         <ul className={styles.itemsSearch}>{this.renderPlaylists()}</ul>
       </div>

@@ -1,38 +1,38 @@
 .wrapper {
-  margin: 2rem; }
+  margin: 5rem 2rem 2rem 2rem; }
 
 .contentOfPage {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  margin-top: 2rem; }
 
 .titleOfPage {
-  font-size: 5rem;
-  font-weight: 600;
-  color: #0000008a;
-  text-shadow: 5px 0px 4px #887b7b;
-  margin-top: 2rem; }
+  font-size: 1.5rem;
+  font-weight: 600; }
 
 .nameOfPage {
   align-self: center;
   margin-left: 4rem;
   font-size: 6rem;
-  font-weight: 600;
-  color: #0000008a;
-  text-shadow: 5px 0px 4px #887b7b; }
+  font-weight: 600; }
+  .nameOfPage_color {
+    color: #0000008a;
+    text-shadow: 5px 0px 4px #887b7b; }
 
 .title {
-  margin-top: 5rem;
+  margin-top: 2rem;
   color: #90949c;
   font-size: 1.5rem;
   font-weight: 600; }
-  .title_second {
-    margin-top: 2rem; }
 
 .link {
   text-decoration: none;
   color: #000000de; }
   .link:hover {
     text-decoration: underline; }
+  .link_shadow:hover {
+    color: #0000008a;
+    text-shadow: 5px 0px 4px #887b7b; }
 
 .itemsSearch {
   display: flex;
