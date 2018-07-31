@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DialogContainer, Button, List, ListItem, Paper, FocusContainer } from 'react-md';
+import { DialogContainer } from 'react-md';
 
 class DialogWindow extends Component {
   show = () => {

@@ -9,6 +9,7 @@ import artistsSaga from '../sagas/artistsSaga';
 import artistDetailSaga from '../sagas/artistDetailSaga';
 import albumDetailSaga from '../sagas/albumDetailSaga';
 import searchSaga from '../sagas/searchSaga';
+import createPlaylistSaga from '../sagas/playlistFormSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     artistDetailSaga(),
     albumDetailSaga(),
     searchSaga(),
+    createPlaylistSaga(),
   ]);
 }

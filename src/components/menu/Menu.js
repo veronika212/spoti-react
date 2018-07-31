@@ -9,6 +9,7 @@ import { getPlaylistsList } from '../../sagas/playlistsListSaga';
 import styles from './Menu.css';
 
 import DialogWindow from '../dialog-window/DialogWindow';
+import PlaylistForm from '../playlist-form/PlaylistForm';
 
 const isLeft = true;
 class Menu extends Component {
@@ -86,11 +87,11 @@ class Menu extends Component {
           }
         />
         <DialogWindow
-          title="Create form"
+          title="Create playlist"
           visible={this.state.isFormVisible}
           onHideCallback={() => this.setState({ isFormVisible: false })}
         >
-          dwa
+          <PlaylistForm />
         </DialogWindow>
       </div>
     );

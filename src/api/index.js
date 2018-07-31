@@ -76,6 +76,9 @@ export default {
         },
       });
     },
+
+    create: (userId, data) =>
+      client.post(`${baseUrl}/users/${userId}/playlists`, data).catch(forwardErrorResponse),
   },
 
   // Playlists
