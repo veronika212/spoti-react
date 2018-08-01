@@ -12,6 +12,7 @@ import DialogWindow from '../dialog-window/DialogWindow';
 import PlaylistForm from '../playlist-form/PlaylistForm';
 
 const isLeft = true;
+
 class Menu extends Component {
   state = {
     isFormVisible: false,
@@ -59,6 +60,7 @@ class Menu extends Component {
   };
 
   render() {
+    // const { width, height } = this.props;
     const closeBtn = (
       <Button
         icon
@@ -67,6 +69,7 @@ class Menu extends Component {
         }}
       />
     );
+
     return (
       <div>
         <Drawer
@@ -90,6 +93,8 @@ class Menu extends Component {
           title="Create playlist"
           visible={this.state.isFormVisible}
           onHideCallback={() => this.setState({ isFormVisible: false })}
+          width={500}
+          height={400}
         >
           <PlaylistForm />
         </DialogWindow>

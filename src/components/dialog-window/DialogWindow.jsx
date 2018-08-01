@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { DialogContainer } from 'react-md';
+import { Button, DialogContainer } from 'react-md';
+
+// import styles from './DialogWindow.css';
 
 class DialogWindow extends Component {
   show = () => {
@@ -25,7 +27,9 @@ class DialogWindow extends Component {
   };
 
   render() {
-    const { title, visible } = this.props;
+    const { title, visible, width, height } = this.props;
+
+    const actions = [];
 
     return (
       <DialogContainer
@@ -33,9 +37,16 @@ class DialogWindow extends Component {
         visible={visible}
         title={title}
         onHide={this.hide}
+        actions={actions}
         focusOnMount={false}
+        width={width}
+        height={height}
       >
         {this.props.children}
+
+        <Button flat secondary onClick={this.hide}>
+          Cencel
+        </Button>
       </DialogContainer>
     );
   }
