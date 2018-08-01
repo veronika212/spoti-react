@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Drawer, Toolbar } from 'react-md';
-import { List, ListItem } from 'react-md';
+// import { Button, Drawer, Toolbar } from 'react-md';
+import { List, ListItem, Button, Drawer, Toolbar } from 'react-md';
 
 import { history } from '../../index';
 import { getPlaylistsList } from '../../sagas/playlistsListSaga';
@@ -55,7 +55,12 @@ class Menu extends Component {
           <ListItem key={navItem.label} primaryText={navItem.label} onClick={navItem.onClick} />
         ))}
       </List>,
-      <button onClick={() => this.setState({ isFormVisible: true })}>Create playlist</button>,
+
+      <Button primary icon onClick={() => this.setState({ isFormVisible: true })}>
+        add
+      </Button>,
+
+      // <Button icon onClick={() => this.setState({ isFormVisible: true })}>Create playlist</Button>
     ];
   };
 
@@ -96,7 +101,7 @@ class Menu extends Component {
           width={500}
           height={400}
         >
-          <PlaylistForm />
+          <PlaylistForm submitCallback={() => this.setState({ isFormVisible: false })} />
         </DialogWindow>
       </div>
     );

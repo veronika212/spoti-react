@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, DialogContainer } from 'react-md';
+import { DialogContainer } from 'react-md';
 
 // import styles from './DialogWindow.css';
 
@@ -43,10 +43,6 @@ class DialogWindow extends Component {
         height={height}
       >
         {this.props.children}
-
-        <Button flat secondary onClick={this.hide}>
-          Cencel
-        </Button>
       </DialogContainer>
     );
   }

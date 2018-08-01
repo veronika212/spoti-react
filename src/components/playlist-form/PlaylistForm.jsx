@@ -17,7 +17,8 @@ class PlaylistForm extends Component {
     const { name, description } = this.state;
     this.props.createPlaylist(name, description);
     this.setState({ name: '', description: '' });
-    console.log('form submited');
+    this.props.submitCallback();
+    // console.log('form submited');
   };
 
   onInputChange = (value, name) => {
@@ -31,7 +32,7 @@ class PlaylistForm extends Component {
       <form onSubmit={this.handleSubmit} className={styles.formPlaylist}>
         <div className="md-grid">
           <TextField
-            id="floating-label-counter-field"
+            id="counter-field"
             label="Name"
             lineDirection="center"
             placeholder="New Playlist"

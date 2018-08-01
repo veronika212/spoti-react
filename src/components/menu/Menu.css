@@ -1,2 +1,4 @@
 .menu {
-  position: static; }
+  position: fixed;
+  height: 100vh;
+  width: 20%; }
