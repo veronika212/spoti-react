@@ -60,7 +60,7 @@ class PlaylistDetail extends Component {
     if (!playlistInfo) {
       return null;
     }
-    const imageUrl = images.length === 0 ? 'https://picsum.photos/300' : images[1].url;
+    const imageUrl = images.length === 0 ? 'https://picsum.photos/300' : images[0].url;
 
     return (
       <div className={styles.playlisInfoWrapper}>
@@ -128,7 +128,7 @@ class PlaylistDetail extends Component {
   render() {
     return (
       <div>
-        {this.renderCoverImage()}
+        {this.props.images && this.renderCoverImage()}
         <ul>{this.renderPlaylist()}</ul>
         <hr />
       </div>
