@@ -11,11 +11,6 @@ if (!accessToken) {
 }
 
 function forwardErrorResponse(err) {
-  if (accessToken === '') {
-    window.location.href = '/login';
-    return;
-  }
-
   if (err.response.status === 401 && refreshToken.length < 0) {
     console.log('refresh');
   }
