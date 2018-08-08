@@ -75,19 +75,18 @@ function* doDeletePlaylistTrack(action) {
     },
   ];
 
-  const resp = yield call(api.playlist.deleteTrack, playlistId, userId, deletedTrack);
-  console.log(resp, 'resp');
-  if (resp.ok === false) {
-    return yield put({
+  try {
+    yield call(api.playlist.deleteTrack, playlistId, userId, deletedTrack);
+    yield put({
+      type: playlistDetailTypes.DELETE_PLAYLIST_TRACK_SUCCESS,
+      payload: track.id,
+    });
+  } catch (error) {
+    yield put({
       type: playlistDetailTypes.DELETE_PLAYLIST_TRACK_FAIL,
-      payload: resp.error.message,
+      payload: error,
     });
   }
-
-  yield put({
-    type: playlistDetailTypes.DELETE_PLAYLIST_TRACK_SUCCESS,
-    payload: resp.data,
-  });
 }
 
 export default function* playlistDetailSaga() {
