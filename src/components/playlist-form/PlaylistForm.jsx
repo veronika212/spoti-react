@@ -27,7 +27,6 @@ class PlaylistForm extends Component {
     });
   };
   render() {
-    // const { name, description } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className={styles.formPlaylist}>
         <div className="md-grid">
@@ -56,31 +55,6 @@ class PlaylistForm extends Component {
         <Button flat primary onClick={this.handleSubmit}>
           Confirm
         </Button>
-
-        {/* <div>
-          <label>Name</label>
-          <input
-            name="name"
-            type="text"
-            placeholder="New Playlist"
-            value={name}
-            onChange={e => this.onInputChange(e, 'name')}
-          />
-        </div>
-
-        <div>
-          <label>Description</label>
-          <textarea
-            name="description"
-            type="text"
-            rows="5"
-            placeholder="Give your playlist a catchy description"
-            value={description}
-            onChange={e => this.onInputChange(e, 'description')}
-          />
-        </div> */}
-
-        {/* <button type="submit">Create</button> */}
       </form>
     );
   }

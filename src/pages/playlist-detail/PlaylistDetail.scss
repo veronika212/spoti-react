@@ -1,6 +1,5 @@
 @import '../../css/Colors.scss';
 
-//style is App.scss, but it is not working
 .icons {
   cursor: pointer;
 }
@@ -22,6 +21,8 @@
 .playlistImage {
   margin-right: 2rem;
   margin-top: 2rem;
+  width: 300px;
+  height: 300px;
 }
 
 .playlistText {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// import { Button, Drawer, Toolbar } from 'react-md';
 import { List, ListItem, Button, Drawer, Toolbar } from 'react-md';
 
 import { history } from '../../index';
@@ -59,13 +58,10 @@ class Menu extends Component {
       <Button primary icon onClick={() => this.setState({ isFormVisible: true })}>
         add
       </Button>,
-
-      // <Button icon onClick={() => this.setState({ isFormVisible: true })}>Create playlist</Button>
     ];
   };
 
   render() {
-    // const { width, height } = this.props;
     const closeBtn = (
       <Button
         icon

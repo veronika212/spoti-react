@@ -68,7 +68,6 @@ function* doDeletePlaylistTrack(action) {
   const { playlistId, track } = action.payload;
   const playlistItems = yield select(selectPlaylistDetailItems);
   const trackPosition = playlistItems.findIndex(item => item.track.id === track.id);
-  // console.log(trackPosition, 'trackPosition');
   const deletedTrack = [
     {
       uri: track.uri,

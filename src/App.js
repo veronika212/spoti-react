@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div style={{ display: 'flex', minHeight: '100vh', width: '100%' }}>
         <Menu className="menu" />
-        <div className="appContent" style={{ width: '80%', marginLeft: '20%' }}>
+        <div className="appContent" style={{ width: '80%', marginLeft: '18.8%' }}>
           <Header />
           <div style={{ marginTop: '4rem' }}>{this.props.children}</div>
         </div>

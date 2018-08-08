@@ -1,7 +1,7 @@
 .albumDetail {
   display: flex;
   flex-direction: row;
-  margin: 3rem; }
+  margin: 6rem 3rem 3rem 3rem; }
 
 .albumDetailImage {
   margin-right: 2rem; }

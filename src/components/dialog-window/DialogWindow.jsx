@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { DialogContainer } from 'react-md';
 
-// import styles from './DialogWindow.css';
-
 class DialogWindow extends Component {
   show = () => {
     const { onShowCallback } = this.props;
@@ -21,7 +19,6 @@ class DialogWindow extends Component {
   handleKeyDown = e => {
     const key = e.which || e.keyCode;
     if (key === 13 || key === 32) {
-      // also close on enter or space keys
       this.hide();
     }
   };

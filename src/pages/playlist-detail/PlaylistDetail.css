@@ -14,7 +14,9 @@
 
 .playlistImage {
   margin-right: 2rem;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  width: 300px;
+  height: 300px; }
 
 .playlistText {
   color: #90949c;
