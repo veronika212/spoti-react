@@ -1,13 +1,13 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import api from '../api';
 
-import { actionTypes as createPlaylistActionTypes } from '../reducers/playlistFormReducer';
+import { actionTypes as createPlaylistActionTypes } from '../reducers/userPlaylistsReducer';
 import { selectUserId } from '../reducers/userProfileReducer';
 
 //Action creators
 export const createPlaylist = (name, description) => {
   return {
-    type: createPlaylistActionTypes.POST_PLAYLIST,
+    type: createPlaylistActionTypes.CREATE_PLAYLIST,
     payload: {
       name,
       description,
@@ -23,16 +23,16 @@ function* doCreatePlaylist(action) {
   const resp = yield call(api.playlist.create, userId, { name, description });
   if (resp.ok === false) {
     return yield put({
-      type: createPlaylistActionTypes.POST_PLAYLIST_FAIL,
+      type: createPlaylistActionTypes.CREATE_PLAYLIST_FAIL,
       payload: resp.error.message,
     });
   }
   yield put({
-    type: createPlaylistActionTypes.POST_PLAYLIST_SUCCESS,
+    type: createPlaylistActionTypes.CREATE_PLAYLIST_SUCCESS,
     payload: resp.data,
   });
 }
 
 export default function* createPlaylistSaga() {
-  yield takeLatest(createPlaylistActionTypes.POST_PLAYLIST, doCreatePlaylist);
+  yield takeLatest(createPlaylistActionTypes.CREATE_PLAYLIST, doCreatePlaylist);
 }

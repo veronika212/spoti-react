@@ -39,3 +39,9 @@
 
 .line {
   margin-bottom: 3rem; }
+
+.link {
+  text-decoration: none;
+  color: #000000de; }
+  .link:hover {
+    text-decoration: underline; }

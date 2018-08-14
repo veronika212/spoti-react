@@ -4,7 +4,7 @@ import authSaga from '../sagas/authSaga';
 import userProfileSaga from '../sagas/userProfileSaga';
 import songsSaga from '../sagas/songsSaga';
 import playlistDetailSaga from '../sagas/playlistDetailSaga';
-import playlistsListSaga from '../sagas/playlistsListSaga';
+import userPlaylistsSaga from '../sagas/userPlaylistsSaga';
 import artistsSaga from '../sagas/artistsSaga';
 import artistDetailSaga from '../sagas/artistDetailSaga';
 import albumDetailSaga from '../sagas/albumDetailSaga';
@@ -17,7 +17,7 @@ export default function* rootSaga() {
     userProfileSaga(),
     songsSaga(),
     playlistDetailSaga(),
-    playlistsListSaga(),
+    userPlaylistsSaga(),
     artistsSaga(),
     artistDetailSaga(),
     albumDetailSaga(),

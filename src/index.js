@@ -19,7 +19,6 @@ import PlaylistDetail from './pages/playlist-detail/PlaylistDetail';
 import Artists from './pages/artists/Artists';
 import ArtistDetail from './pages/artistDetail/ArtistDetail';
 import AlbumDetail from './pages/album-detail/AlbumDetail';
-// import Search from './components/search/Search';
 import ResultSearching from './pages/result-searching/ResultSearching';
 
 export const history = createBrowserHistory();

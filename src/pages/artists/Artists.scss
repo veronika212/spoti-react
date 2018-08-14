@@ -48,3 +48,11 @@
 .line {
   margin-bottom: 3rem;
 }
+
+.link {
+  text-decoration: none;
+  color: $color-light-black;
+  &:hover {
+    text-decoration: underline;
+  }
+}

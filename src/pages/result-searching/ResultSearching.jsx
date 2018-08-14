@@ -55,7 +55,7 @@ class ResultSearching extends Component {
                   className={cx(styles.link, styles.text, styles.text_name)}
                   to={`/artists/${artist.id}`}
                 >
-                  {artist.name}
+                  {`${artist.name}, `}
                 </Link>
               </span>
             ))}

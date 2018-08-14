@@ -16,7 +16,9 @@ const defaultState = {
 function result(state = defaultState, action) {
   switch (action.type) {
     case actionTypes.GET_SEARCH_SUCCESS:
-      return action.payload;
+      return {
+        ...action.payload,
+      };
     default:
       return state;
   }

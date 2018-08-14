@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '../../../../.cache/typescript/2.9/node_modules/redux';
 
 export const actionTypes = {
   GET_ARTISTS: 'GET_ARTISTS',

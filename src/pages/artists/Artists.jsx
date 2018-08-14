@@ -29,7 +29,9 @@ class Artists extends Component {
           <Link to={`/artists/${artist.id}`}>
             <img className={styles.imageArtists} src={imageUrl} alt="artistAvatar" />
           </Link>
-          <span className={cx(styles.artistsText, styles.artistsName)}>{artist.name}</span>
+          <Link to={`/artists/${artist.id}`} className={styles.link}>
+            <span className={cx(styles.artistsText, styles.artistsName)}>{artist.name}</span>
+          </Link>
           <span className={cx(styles.artistsText, styles.artistsPopularity)}>{`popularity: ${
             artist.popularity
           }`}</span>

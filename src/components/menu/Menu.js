@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { List, ListItem, Button, Drawer, Toolbar } from 'react-md';
 
 import { history } from '../../index';
-import { getPlaylistsList } from '../../sagas/playlistsListSaga';
+import { getUserPlaylists } from '../../sagas/userPlaylistsSaga';
 import styles from './Menu.css';
 
 import DialogWindow from '../dialog-window/DialogWindow';
@@ -18,7 +18,7 @@ class Menu extends Component {
   };
 
   componentDidMount() {
-    this.props.getPlaylistsList();
+    this.props.getUserPlaylists();
   }
 
   renderNavItems = () => {
@@ -112,5 +112,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getPlaylistsList }
+  { getUserPlaylists }
 )(Menu);
