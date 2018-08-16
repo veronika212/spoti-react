@@ -34,5 +34,5 @@ function* doCreatePlaylist(action) {
 }
 
 export default function* createPlaylistSaga() {
-  yield takeLatest(createPlaylistActionTypes.CREATE_PLAYLIST, doCreatePlaylist);
+  yield takeLatest('CREATE_PLAYLIST', doCreatePlaylist);
 }

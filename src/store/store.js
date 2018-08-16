@@ -7,7 +7,6 @@ import sessionStorage from 'redux-persist/es/storage/session';
 
 import rootSaga from './rootSaga';
 
-import authReducer from '../reducers/authReducer';
 import userProfileReducer from '../reducers/userProfileReducer';
 import songsReducer from '../reducers/songsReducer';
 import playlistDetailReducer from '../reducers/playlistDetailReducer';
@@ -18,7 +17,6 @@ import albumDetailReducer from '../reducers/albumDetailReducer';
 import searchReducer from '../reducers/searchReducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
   forms: formReducer,
   userProfile: userProfileReducer,
   songs: songsReducer,

@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontIcon } from 'react-md';
-
-import { loginSuccess } from '../../sagas/authSaga';
-import { history } from '../../index';
+import { getUserProfile } from '../../sagas/userProfileSaga';
+import { getUserPlaylists } from '../../sagas/userPlaylistsSaga';
 import styles from '../login/Login.css';
+import { client } from '../../api';
 
 class LoginForm extends Component {
   componentDidMount() {
     const params = this.getHashParams();
     const accessToken = params.access_token;
     const refreshToken = params.refresh_token;
+
     if (accessToken) {
-      window.localStorage.setItem('accessToken', accessToken);
-      window.localStorage.setItem('refreshToke', refreshToken);
-      this.props.loginSuccess({
-        accessToken,
-        refreshToken,
-      });
-      history.push('/');
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      client.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
+      this.props.getUserProfile();
+      this.props.getUserPlaylists();
     }
   }
 
@@ -49,5 +48,5 @@ class LoginForm extends Component {
 
 export default connect(
   null,
-  { loginSuccess }
+  { getUserProfile, getUserPlaylists }
 )(LoginForm);

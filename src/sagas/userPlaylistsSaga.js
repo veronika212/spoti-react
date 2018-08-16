@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../api';
 import { actionTypes as userPlaylistsActionTypes } from '../reducers/userPlaylistsReducer';
-
 // Actions creators
 export const getUserPlaylists = () => {
   return {
@@ -12,20 +11,19 @@ export const getUserPlaylists = () => {
 
 // Sagas
 function* doGetUserPlaylists(action) {
-  try {
-    const resp = yield call(api.userPlaylists.getUserPlaylists);
-    yield put({
-      type: userPlaylistsActionTypes.GET_USER_PLAYLISTS_SUCCESS,
-      payload: resp.data,
-    });
-  } catch (error) {
-    yield put({
+  const resp = yield call(api.userPlaylists.getUserPlaylists);
+  if (resp.ok === false) {
+    return yield put({
       type: userPlaylistsActionTypes.GET_USER_PLAYLISTS_FAIL,
-      payload: error,
+      payload: resp.error.message,
     });
   }
+  yield put({
+    type: userPlaylistsActionTypes.GET_USER_PLAYLISTS_SUCCESS,
+    payload: resp.data,
+  });
 }
 
-export default function* playlistsListSaga() {
-  yield takeLatest(userPlaylistsActionTypes.GET_USER_PLAYLISTS, doGetUserPlaylists);
+export default function* userPlaylistSaga() {
+  yield takeLatest('GET_USER_PLAYLISTS', doGetUserPlaylists);
 }
