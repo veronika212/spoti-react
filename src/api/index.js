@@ -1,16 +1,17 @@
 import axios from 'axios';
-
 /**
  * Create client
  */
 
-let accessToken = window.localStorage.getItem('accessToken');
-let refreshToken = window.localStorage.getItem('refreshToken');
-if (!accessToken) {
-  accessToken = '';
-}
+const baseUrl = 'https://api.spotify.com/v1';
+export const client = axios.create({
+  responseType: 'json',
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+});
 
 function forwardErrorResponse(err) {
+  const refreshToken = localStorage.getItem('refreshToken');
   if (err.response.status === 401 && refreshToken.length < 0) {
     console.log('refresh');
   }
@@ -24,16 +25,6 @@ function forwardErrorResponse(err) {
   }
   return resp;
 }
-
-const baseUrl = 'https://api.spotify.com/v1';
-export const client = axios.create({
-  responseType: 'json',
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-  headers: {
-    Authorization: `Bearer ${accessToken}`,
-  },
-});
 
 export default {
   // Auth

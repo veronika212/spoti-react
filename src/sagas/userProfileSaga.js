@@ -1,8 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { actionTypes as authActionTypes } from '../reducers/authReducer';
 import { actionTypes as userProfileActionTypes } from '../reducers/userProfileReducer';
+import { history } from '../index';
 
 import api from '../api';
+
+export const getUserProfile = () => {
+  return {
+    type: userProfileActionTypes.GET_USER_PROFILE,
+  };
+};
 
 function* doGetUserProfile(action) {
   try {
@@ -11,6 +17,7 @@ function* doGetUserProfile(action) {
       type: userProfileActionTypes.GET_USER_PROFILE_SUCCESS,
       payload: resp.data,
     });
+    history.push('/');
   } catch (error) {
     yield put({
       type: userProfileActionTypes.GET_USER_PROFILE_FAIL,
@@ -20,5 +27,5 @@ function* doGetUserProfile(action) {
 }
 
 export default function* userProfileSaga() {
-  yield takeLatest(authActionTypes.LOGIN_SUCCESS, doGetUserProfile);
+  yield takeLatest(userProfileActionTypes.GET_USER_PROFILE, doGetUserProfile);
 }

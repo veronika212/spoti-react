@@ -36,6 +36,6 @@ function* doGetSearch(action) {
   history.push('/result');
 }
 
-export default function* playlistsListSaga() {
+export default function* searchSaga() {
   yield takeLatest(searchActionTypes.GET_SEARCH, doGetSearch);
 }
