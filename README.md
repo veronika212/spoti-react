@@ -8,7 +8,8 @@
 
 ### Instalation
 
-1.  clone repo wit `git clone https://github.com/veronika212/spoti-react.git`
+1.  clone repo with `git clone https://github.com/veronika212/spoti-react.git`
 2.  `cd spoti-react`
 3.  `npm install`
 4.  `npm start`
+5.  `npm start-server`

@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
   font-size: 2rem;
   font-weight: 600;
@@ -15,14 +16,16 @@
   width: 3.4285714285714284em;
   background: #606060b5;
   text-align: center;
-  border-radius: 0.14285714285714285em;
+  // border-radius: 0.14285714285714285em;
+  // background: #7b7676c9;
+  border-radius: 50%;
+  box-shadow: 2px 0px 22px 1px rgba(0, 0, 0, 0.53);
   &:hover {
     background: #6060603d;
   }
 }
 
 .iconPerson {
-  font-size: 40px;
+  font-size: 50px !important;
   color: #000000de;
-  margin-right: 1rem;
 }
